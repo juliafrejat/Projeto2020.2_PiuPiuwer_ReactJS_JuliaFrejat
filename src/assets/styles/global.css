@@ -1,23 +1,16 @@
 :root {
     font-size: 60%;
-    --color-background: #F0F0F7;
-    --color-primary-lighter: #9871F5;
-    --color-primary-light: #916BEA;
-    --color-primary: #8257E5;
-    --color-primary-dark: #774DD6;
-    --color-primary-darker: #6842C2;
-    --color-secundary: #04D361;
-    --color-secundary-dark: #04BF58;
-    --color-title-in-primary: #FFFFFF;
-    --color-text-in-primary: #D4C2FF;
-    --color-text-title: #32264D;
-    --color-text-complement: #9C98A6;
-    --color-text-base: #6A6180;
-    --color-line-in-white: #E6E6F0;
-    --color-input-background: #F8F8FC;
-    --color-button-text: #FFFFFF;
-    --color-box-base: #FFFFFF;
-    --color-box-footer: #FAFAFC;
+    --color-background: #F8F9FA;
+    --color-primary-lighter: #D8F3DC;
+    --color-primary-light: #95D5B2;
+    --color-primary: #52B788;
+    --color-primary-dark: #40916C;
+    --color-primary-darker: #1B4332;
+    --color-secondary-lighter: #E9ECEF;
+    --color-secondary-light: #CED4DA;
+    --color-secondary: #6C757D;
+    --color-secondary-dark: #495057;
+    --color-secondary-darker: #343A40;
 }
 
 * {
@@ -42,7 +35,7 @@ body {
 
 body, input, button, textarea {
     font: 500 1.6rem Poppins;
-    color: var(--color-text-base);
+    color: var(--color-secondary-dark);
 }
 
 .container {
