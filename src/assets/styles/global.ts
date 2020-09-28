@@ -28,6 +28,8 @@ export default createGlobalStyle`
 
     body {
         background: var(--color-background);
+        font-family: 'Zilla Slab', 'Courier New', Courier, serif;
+        text-rendering: optimizeLegibility !important;
     }
 
     #root {
@@ -44,6 +46,55 @@ export default createGlobalStyle`
     .container {
         width: 90vw;
         max-width: 700px;
+    }
+
+    .container-row {
+        display: flex;
+        align-items: center;
+    }
+
+    .container-column {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    img {
+        height: 30px;
+        padding: 0px 10px;
+    }
+
+    a {
+        text-decoration: none;
+        height: fit-content;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    input, textarea {
+        border: none;
+        background: none;
+        outline: none;
+        font-family: 'Zilla Slab', 'Courier New', Courier, serif;
+    }
+
+    aside {
+        width: 25%;
+    }
+    
+    hr {
+        background-color: #343A40;
+        opacity: 70%;
+        border: 0px;
+        height: 1px;
+        width: 100%;
+        margin: 15px 0px;
+    }
+    h2 {
+        align-self: flex-start;
+        color: #343A40;
+        font-size: 25px;
     }
 
     @media (min-width: 700px) {

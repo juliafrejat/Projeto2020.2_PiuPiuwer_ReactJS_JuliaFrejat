@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { HeaderComponent } from './styles';
+
 import logoImg from '../../assets/images/passaro.svg';
 import homeIcon from '../../assets/images/casa.svg';
 import exploreIcon from '../../assets/images/explorar.svg';
@@ -10,15 +12,15 @@ import profileIcon from '../../assets/images/perfil.svg';
 import moreIcon from '../../assets/images/mais.svg';
 import searchIcon from '../../assets/images/busca.svg';
 
-interface PageHeaderProps {
+interface HeaderProps {
     hasMenu: boolean;
 }
 
-const PageHeader: React.FC<PageHeaderProps> = (props) => {
+const Header: React.FC<HeaderProps> = (props) => {
     const hasMenu = props.hasMenu;
     if (hasMenu){
         return (
-            <header className="page-header">
+            <HeaderComponent className="page-header">
                 <div className="container-row title">
                     <Link to="/">
                         <img src={logoImg} alt="PiuPiuwer" />
@@ -39,7 +41,7 @@ const PageHeader: React.FC<PageHeaderProps> = (props) => {
                     <input type="text" name="search"/>
                     <button type="submit"><img src={searchIcon} alt="Buscar"/></button>
                 </form>
-            </header>
+            </HeaderComponent>
         )
     } else {
         return (
@@ -51,4 +53,4 @@ const PageHeader: React.FC<PageHeaderProps> = (props) => {
     
 }
 
-export default PageHeader;
+export default Header;
