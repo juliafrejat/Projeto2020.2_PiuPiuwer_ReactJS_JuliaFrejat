@@ -7,7 +7,16 @@ interface FooterProps {
 
 const Button: React.FC<FooterProps> = (props) => {
     return (
-        <FooterComponent></FooterComponent>
+        <FooterComponent className="container-row footer">
+            <div className="container-row links">
+                <a href="/">Termos</a>
+                <a href="/">Privacidade</a>
+                <a href="/">Cookies</a>
+                <a href="/">FAQ</a>
+                <a href="/">Contato</a>
+                <p>© 2020 PiuPiuwer, Inc.</p>
+            </div>
+        </FooterComponent>
     )
     
 }
