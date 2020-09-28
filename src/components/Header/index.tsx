@@ -35,21 +35,16 @@ const PageHeader: React.FC<PageHeaderProps> = (props) => {
                     <Link to="/"><img src={moreIcon} alt="Mais" /></Link>
                 </div>
 
-                <div className="container-row search">
+                <form className="container-row search">
                     <input type="text" name="search"/>
                     <button type="submit"><img src={searchIcon} alt="Buscar"/></button>
-                </div>
+                </form>
             </header>
         )
     } else {
         return (
             <header className="page-header">
-    
-                <div className="header-content">
-                    <strong>{props.title}</strong>
-                    { props.description && <p>{props.description}</p> }
-                    {props.children}
-                </div>
+
             </header>
         )
     }
