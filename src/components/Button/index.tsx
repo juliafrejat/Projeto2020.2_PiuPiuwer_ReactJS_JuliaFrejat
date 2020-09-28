@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { ButtonHTMLAttributes } from 'react';
 
-interface ButtonProps {
-    isGreen: boolean;
+import { ButtonComponent } from './styles';
+
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+    backgroundColor: string;
+    textColor: string;
+    border: string;
     id?: string;
     value: string;
     classNames?: string;
@@ -9,7 +13,15 @@ interface ButtonProps {
 
 const Button: React.FC<ButtonProps> = (props) => {
     return (
-        <input type="submit" className={props.classNames} id={props.id} value={props.value}/>
+        <ButtonComponent 
+            backgroundColor={props.backgroundColor}
+            textColor={props.textColor}
+            border={props.border}
+            id={props.id}
+            className={props.classNames} 
+        >
+            {props.value}
+        </ButtonComponent>
     )
     
 }
