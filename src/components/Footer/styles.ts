@@ -10,8 +10,14 @@ export const FooterComponent = styled.div<FooterProps>`
     left: 0;
     bottom: 0;
     justify-content: center;
-    background-color: #ffffff;
-    border: 1px solid #CED4DA;
-    color: #95D5B2;
+    background-color: #FFFFFF;
+    border: 1px solid var(--color-secondary-light);
+    color: var(--color-primary-light);
     font-size: 15px;
+
+    .links {
+        width: 100%;
+        max-width: 800px;
+        justify-content: space-around;
+    }
 `;

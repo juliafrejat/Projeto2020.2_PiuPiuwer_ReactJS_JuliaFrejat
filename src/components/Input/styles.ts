@@ -1,5 +1,8 @@
-import { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 
-export default createGlobalStyle`
+interface InputProps {
+}
 
+export const InputComponent = styled.input<InputProps>`
+    
 `;

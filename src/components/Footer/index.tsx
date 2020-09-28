@@ -5,7 +5,7 @@ import { FooterComponent } from './styles';
 interface FooterProps {
 }
 
-const Button: React.FC<FooterProps> = (props) => {
+const Footer: React.FC<FooterProps> = (props) => {
     return (
         <FooterComponent className="container-row footer">
             <div className="container-row links">
@@ -21,4 +21,4 @@ const Button: React.FC<FooterProps> = (props) => {
     
 }
 
-export default Button;
+export default Footer;
