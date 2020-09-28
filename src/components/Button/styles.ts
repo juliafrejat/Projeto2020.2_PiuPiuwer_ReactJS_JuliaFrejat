@@ -4,6 +4,7 @@ interface ButtonProps {
     textColor: string;
     border: string;
     backgroundColor: string;
+    hoverBackgroundColor: string;
 }
 
 export const ButtonComponent = styled.button<ButtonProps>`
@@ -20,4 +21,8 @@ export const ButtonComponent = styled.button<ButtonProps>`
     color:${props => props.textColor};
     border:${props => props.border};
     background-color:${props => props.backgroundColor};
+
+    &:hover {
+        background-color:${props => props.hoverBackgroundColor};
+    }
 `;
