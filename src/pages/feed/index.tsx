@@ -9,11 +9,13 @@ import cameraIcon from '../../assets/images/post_camera.svg';
 import emotionIcon from '../../assets/images/post_emoji.svg';
 import pollIcon from '../../assets/images/post_votacao.svg';
 
+import { BodyDiv } from './styles';
+
 function Feed() {
     return (
-        <div className="container-column" id="">
+        <div className="container-column" id="full-body">
             <Header hasMenu={true} />
-            <div className="container-row" id="body">
+            <BodyDiv className="container-row" id="body">
                 <aside className="container-column">
                     <h2>Tendências</h2>
                     <hr></hr>
@@ -52,7 +54,7 @@ function Feed() {
                     <h2>Sugestões</h2>
                     <hr></hr>
                 </aside>
-            </div>
+            </BodyDiv>
             <Footer />
         </div>
     )
