@@ -14,13 +14,15 @@ import searchIcon from '../../assets/images/busca.svg';
 
 interface HeaderProps {
     hasMenu: boolean;
+    backgroundColor?: string;
+    border?: string;
 }
 
 const Header: React.FC<HeaderProps> = (props) => {
     const hasMenu = props.hasMenu;
     if (hasMenu){
         return (
-            <HeaderComponent className="page-header">
+            <HeaderComponent className="page-header" backgroundColor="var(--color-primary)" border="none">
                 <div className="container-row title">
                     <Link to="/">
                         <img src={logoImg} alt="PiuPiuwer" />
@@ -45,9 +47,9 @@ const Header: React.FC<HeaderProps> = (props) => {
         )
     } else {
         return (
-            <header className="page-header">
-
-            </header>
+            <HeaderComponent className="page-header" backgroundColor="#FFFFFF" border="1px solid var(--color-secondary-light)">
+                <button>Cadastre-se</button>
+            </HeaderComponent>
         )
     }
     

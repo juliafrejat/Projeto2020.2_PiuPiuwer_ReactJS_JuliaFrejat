@@ -5,7 +5,7 @@ interface DivProps {
 
 export const Body = styled.div<DivProps>`
     justify-content: center;
-    align-items: flex-start;
+    align-items: flex-start !important;
     width: 90vw;
 
     .container-column{
@@ -27,9 +27,18 @@ export const Body = styled.div<DivProps>`
 
     @media (max-width: 700px) {
         width: 100vw;
+
         aside {
             display: none;
         }
+
+        #posts {
+            width: 90vw;
+        }
+    }
+
+    @media (max-width: 970px) {
+        width: 100vw;
     }
 `;
 

@@ -22,14 +22,27 @@ export default createGlobalStyle`
         box-sizing: border-box;
     }
 
-    html, body, #full-body, #root {
+    html, body, .full-body-login, .full-body-feed, #root {
         height: 100vh;
     }
 
-    body {
+    .full-body-feed {
         background: var(--color-background);
+    }
+
+    .full-body-login {
+        background: #FFFFFF;
+    }
+
+    body {
         font-family: 'Zilla Slab', 'Courier New', Courier, serif;
         text-rendering: optimizeLegibility !important;
+    }
+
+    .body {
+        height: 100vh;
+        align-items: center;
+        justify-content: center;
     }
 
     #root {
@@ -39,7 +52,6 @@ export default createGlobalStyle`
     }
 
     body, input, button, textarea {
-        font: 500 1.6rem Poppins;
         color: var(--color-secondary-dark);
     }
 
@@ -97,9 +109,32 @@ export default createGlobalStyle`
         font-size: 25px;
     }
 
+    .big-title {
+        width: 100%;
+    }
+
+    .big-title h1 {
+        font-size: 6.5vw;
+        color: var(--color-primary)
+    }
+
+    .big-title img {
+        width: 20%;
+        height: auto;
+    }
+
     @media (min-width: 700px) {
         :root {
             font-size: 62.5%;
+        }
+    }
+    @media (max-width: 700px) {
+        .body {
+            flex-direction: column;
+        }
+
+        .big-title img {
+            width: 25%;
         }
     }
 `;

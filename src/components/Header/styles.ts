@@ -1,11 +1,14 @@
 import styled from 'styled-components';
 
 interface HeaderProps {
+    backgroundColor: string;
+    border: string;
 }
 
 export const HeaderComponent = styled.header<HeaderProps>`
     width: 100vw;
-    background: #52B788;
+    background: ${props => props.backgroundColor};
+    border-bottom: ${props => props.border};
     padding: 1vh;
     display: flex;
     align-items: center;

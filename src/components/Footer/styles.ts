@@ -4,14 +4,14 @@ interface FooterProps {
 }
 
 export const FooterComponent = styled.div<FooterProps>`
-    width: 100%;
+    width: 100vw;
     height: 5%;
     position: fixed;
     left: 0;
     bottom: 0;
     justify-content: center;
     background-color: #FFFFFF;
-    border: 1px solid var(--color-secondary-light);
+    border-top: 1px solid var(--color-secondary-light);
     color: var(--color-primary-light);
     font-size: 15px;
 

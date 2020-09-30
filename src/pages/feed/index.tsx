@@ -8,7 +8,7 @@ import { Body } from './styles';
 
 function Feed() {
     return (
-        <div className="container-column" id="full-body">
+        <div className="container-column full-body-feed">
             <Header hasMenu={true} />
             <Body className="container-row" id="body">
                 <aside className="container-column">
