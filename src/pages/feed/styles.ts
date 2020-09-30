@@ -26,7 +26,7 @@ export const Body = styled.div<DivProps>`
     }
 
     @media (max-width: 700px) {
-        width: 100vw;
+        width: 92%;
 
         aside {
             display: none;
@@ -38,7 +38,7 @@ export const Body = styled.div<DivProps>`
     }
 
     @media (max-width: 970px) {
-        width: 100vw;
+        width: 92%;
     }
 `;
 

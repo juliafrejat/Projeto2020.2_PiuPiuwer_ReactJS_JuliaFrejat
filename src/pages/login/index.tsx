@@ -25,7 +25,7 @@ function Login() {
                     <form className="container-column">
                         <Input placeholder="Email ou nome de usuário" />
                         <Input placeholder="Senha" />
-                        <input type="submit" value="Continuar"/>
+                        <Button isGreen={true} value="Continuar"/>
                     </form>
                     <p>Esqueceu a senha?</p>
                 </HalfContainer>

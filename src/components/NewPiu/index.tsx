@@ -39,7 +39,7 @@ const NewPiu: React.FC<NewPiuProps> = (props) => {
                     <a href=""><img src={emotionIcon}/></a>
                     <a href=""><img src={pollIcon}/></a>
                 </div>
-                <input type="submit" className="button withinPost" id="piupiu" value="Piu Piu" disabled/>
+                <Button isGreen={true} value="Piu Piu" />
             </div>
         </NewPiuComponent>
     )

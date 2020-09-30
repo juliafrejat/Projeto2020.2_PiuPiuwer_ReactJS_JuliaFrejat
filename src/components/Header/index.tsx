@@ -11,6 +11,7 @@ import notifIcon from '../../assets/images/notificacao.svg';
 import profileIcon from '../../assets/images/perfil.svg';
 import moreIcon from '../../assets/images/mais.svg';
 import searchIcon from '../../assets/images/busca.svg';
+import Button from '../Button';
 
 interface HeaderProps {
     hasMenu: boolean;
@@ -48,7 +49,7 @@ const Header: React.FC<HeaderProps> = (props) => {
     } else {
         return (
             <HeaderComponent className="page-header" backgroundColor="#FFFFFF" border="1px solid var(--color-secondary-light)">
-                <button>Cadastre-se</button>
+                <Button isGreen={true} value="Cadastre-se" />
             </HeaderComponent>
         )
     }

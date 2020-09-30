@@ -27,6 +27,10 @@ export const HeaderComponent = styled.header<HeaderProps>`
         height: 50px;
     }
 
+    .title {
+        font-size: 2vh;
+    }
+
     #more img{
         height: 20px;
     }
@@ -53,16 +57,44 @@ export const HeaderComponent = styled.header<HeaderProps>`
         outline: none;
     }
 
-    @media (max-width: 900px) {
-        flex-direction: column;
-        align-items: center;
+    Button {
+        margin: 0.5vh;
+    }
 
+    @media (max-width: 900px) {
+        justify-content: center;
         .nav {
+            width: 70%;
+            min-width: fit-content;
+            align-items: space-around;
+            padding: 0 5%;
+        }
+
+        .title {
+            display: none;
+        }
+
+        .search {
             width: fit-content;
+            border: 50%;
+        }
+
+        .search img {
+            margin: 0;
+            padding: 0;
+        }
+
+        .search input {
+            width: 10vh;
         }
 
         .container-row {
             margin: 2% 0;
         }
+    }
+
+    @media (max-width: 500px) {
+        flex-direction: column;
+        align-items: center;
     }
 `;

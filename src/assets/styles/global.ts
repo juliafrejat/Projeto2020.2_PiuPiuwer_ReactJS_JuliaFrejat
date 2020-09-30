@@ -109,6 +109,10 @@ export default createGlobalStyle`
         font-size: 25px;
     }
 
+    .body {
+        justify-content: start;
+    }
+
     .big-title {
         width: 100%;
     }
@@ -133,8 +137,18 @@ export default createGlobalStyle`
             flex-direction: column;
         }
 
+        .big-title {
+            justify-content: center;
+        }
+
         .big-title img {
-            width: 25%;
+            height: 8vh;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .big-title h1 {
+            font-size: 5vh;
         }
     }
 `;

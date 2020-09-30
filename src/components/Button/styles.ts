@@ -17,6 +17,9 @@ export const ButtonComponent = styled.button<ButtonProps>`
     font-size: 15px;
     font-weight: bold;
     border-radius: 20px;
+
+    font-family: 'Zilla Slab','Courier New',Courier,serif;
+    text-rendering: optimizeLegibility !important;
     
     color:${props => props.textColor};
     border:${props => props.border};
