@@ -22,7 +22,7 @@ export default createGlobalStyle`
         box-sizing: border-box;
     }
 
-    html, body #root {
+    html, body, #full-body, #root {
         height: 100vh;
     }
 
@@ -70,6 +70,7 @@ export default createGlobalStyle`
         display: flex;
         align-items: center;
         cursor: pointer;
+        color: #FFFFFF;
     }
 
     input, textarea {
