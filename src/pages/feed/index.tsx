@@ -2,7 +2,7 @@ import React from 'react';
 import Footer from '../../components/Footer';
 
 import Header from '../../components/Header';
-import Textarea from '../../components/Textarea';
+import NewPiu from '../../components/NewPiu';
 
 import { Body } from './styles';
 
@@ -17,7 +17,7 @@ function Feed() {
                 </aside>
 
                 <div className="container-column" id="posts">
-                    
+                    <NewPiu />
 
                     <div className="container-column" id="oldPosts">
                     </div>
