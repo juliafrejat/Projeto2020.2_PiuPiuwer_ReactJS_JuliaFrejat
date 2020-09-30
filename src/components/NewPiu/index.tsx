@@ -2,7 +2,7 @@ import React, { FormHTMLAttributes } from 'react';
 
 import { NewPiuComponent } from './styles';
 import Textarea from '../Textarea';
-
+import Button from '../Button';
 
 import galleryIcon from '../../assets/images/post_galeria.svg';
 import cameraIcon from '../../assets/images/post_camera.svg';
@@ -38,7 +38,15 @@ const NewPiu: React.FC<NewPiuProps> = (props) => {
                     <a href=""><img src={emotionIcon}/></a>
                     <a href=""><img src={pollIcon}/></a>
                 </div>
-                <input type="submit" className="button withinPost" id="piupiu" value="Piu Piu" disabled/>
+                <Button 
+                className="button withinPost"
+                id="piupiu"
+                backgroundColor="var(--color-primary)" 
+                hoverBackgroundColor="var(--color-primary-dark"
+                textColor="#FFFFFF"
+                border="none"
+                value="Piu Piu"
+                />
             </div>
         </NewPiuComponent>
     )

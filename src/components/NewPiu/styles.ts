@@ -7,7 +7,7 @@ interface NewPiuProps {
 export const NewPiuComponent = styled.form<NewPiuProps>`
     background-color: #ffffff;
     color: #495057;
-    padding: 15px;
+    padding: 15px !important;
     margin-bottom: 25px;
     border-radius: 15px;
     box-shadow: 0 5px 5px rgb(0,0,0,0.15);
