@@ -39,13 +39,13 @@ const NewPiu: React.FC<NewPiuProps> = (props) => {
                     <a href=""><img src={pollIcon}/></a>
                 </div>
                 <Button 
-                className="button withinPost"
-                id="piupiu"
-                backgroundColor="var(--color-primary)" 
-                hoverBackgroundColor="var(--color-primary-dark"
-                textColor="#FFFFFF"
-                border="none"
-                value="Piu Piu"
+                    className="button withinPost" 
+                    id="piupiu" 
+                    backgroundColor="var(--color-primary)" 
+                    hoverBackgroundColor="var(--color-primary-dark" 
+                    textColor="#FFFFFF" 
+                    border="none" 
+                    value="Piu Piu" 
                 />
             </div>
         </NewPiuComponent>
