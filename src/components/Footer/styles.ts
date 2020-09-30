@@ -20,4 +20,8 @@ export const FooterComponent = styled.div<FooterProps>`
         max-width: 800px;
         justify-content: space-around;
     }
+
+    a {
+        color: var(--color-primary-light);
+    }
 `;

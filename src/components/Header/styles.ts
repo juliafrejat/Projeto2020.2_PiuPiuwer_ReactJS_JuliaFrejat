@@ -10,4 +10,8 @@ export const HeaderComponent = styled.header<HeaderProps>`
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    a {
+        color: #FFFFFF;
+    }
 `;

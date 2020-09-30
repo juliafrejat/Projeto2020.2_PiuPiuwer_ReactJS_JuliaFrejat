@@ -11,7 +11,7 @@ import pollIcon from '../../assets/images/post_votacao.svg';
 
 function Feed() {
     return (
-        <div className="container-column" id="full-body">
+        <div className="container-column" id="">
             <Header hasMenu={true} />
             <div className="container-row" id="body">
                 <aside className="container-column">

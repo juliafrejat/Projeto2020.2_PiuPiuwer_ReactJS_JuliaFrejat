@@ -70,7 +70,6 @@ export default createGlobalStyle`
         display: flex;
         align-items: center;
         cursor: pointer;
-        color: #FFFFFF;
     }
 
     input, textarea {
