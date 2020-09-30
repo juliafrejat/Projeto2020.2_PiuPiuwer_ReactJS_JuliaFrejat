@@ -34,12 +34,12 @@ const Header: React.FC<HeaderProps> = (props) => {
                     <Link to="/messages"><img src={messageIcon} alt="Mensagens" /></Link>
                     <Link to="/notifications"><img src={notifIcon} alt="Notificações" /></Link>
                     <Link to="/profile"><img src={profileIcon} alt="Perfil" /></Link>
-                    <Link to="/"><img src={moreIcon} alt="Mais" /></Link>
+                    <Link to="/"><img src={moreIcon} alt="Mais" id="more" /></Link>
                 </div>
 
                 <form className="container-row search">
                     <input type="text" name="search"/>
-                    <button type="submit"><img src={searchIcon} alt="Buscar"/></button>
+                    <button type="submit"><img src={searchIcon} alt="Buscar" /></button>
                 </form>
             </HeaderComponent>
         )

@@ -24,4 +24,13 @@ export const FooterComponent = styled.div<FooterProps>`
     a {
         color: var(--color-primary-light);
     }
+
+    @media (max-width: 500px) {
+        height: 6%;
+        div {
+            height: 100%;
+            flex-direction: column;
+            flex-wrap: wrap;
+        }
+    }
 `;
