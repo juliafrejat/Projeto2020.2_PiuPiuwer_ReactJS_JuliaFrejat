@@ -4,6 +4,11 @@ import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import Textarea from '../../components/Textarea';
 
+import galleryIcon from '../../assets/images/post_galeria.svg';
+import cameraIcon from '../../assets/images/post_camera.svg';
+import emotionIcon from '../../assets/images/post_emoji.svg';
+import pollIcon from '../../assets/images/post_votacao.svg';
+
 function Feed() {
     return (
         <div>
@@ -30,10 +35,10 @@ function Feed() {
 
                         <div className="container-row postButtons">
                             <div className="container-row withinPost interact">
-                                <a href=""><img src="../../assets/images/post_galeria.svg"/></a>
-                                <a href=""><img src="../../assets/images/post_camera.svg"/></a>
-                                <a href=""><img src="../../assets/images/post_emoji.svg"/></a>
-                                <a href=""><img src="../../assets/images/post_votacao.svg"/></a>
+                                <a href=""><img src={galleryIcon}/></a>
+                                <a href=""><img src={cameraIcon}/></a>
+                                <a href=""><img src={emotionIcon}/></a>
+                                <a href=""><img src={pollIcon}/></a>
                             </div>
                             <input type="submit" className="button withinPost" id="piupiu" value="Piu Piu" disabled/>
                         </div>
