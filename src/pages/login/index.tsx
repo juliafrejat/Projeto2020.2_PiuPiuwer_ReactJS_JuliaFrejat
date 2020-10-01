@@ -10,6 +10,12 @@ import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 
 function Login() {
+    async function handleLogIn(e: FormEvent) {
+        e.preventDefault();
+
+        
+    }
+    
     return (
         <div className="container-column full-body-login">
             <Header hasMenu={false} />
