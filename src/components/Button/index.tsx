@@ -20,6 +20,7 @@ const Button: React.FC<ButtonProps> = (props) => {
                 hoverBackgroundColor="var(--color-primary-dark)"
                 textColor="#FFFFFF"
                 border="none"
+                type={props.type}
             >
                 {props.value}
             </ButtonComponent>
@@ -32,6 +33,7 @@ const Button: React.FC<ButtonProps> = (props) => {
                 hoverBackgroundColor="var(--color-secondary-lighter)"
                 textColor="var(--color-primary)"
                 border="2px solid var(--color-primary)"
+                type={props.type}
             >
                 {props.value}
             </ButtonComponent>

@@ -7,7 +7,13 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 const Input: React.FC<InputProps> = (props) => {
     return (
-        <InputComponent></InputComponent>
+        <InputComponent 
+            placeholder={props.placeholder}
+            type={props.type}
+            onChange={props.onChange}
+        >
+
+        </InputComponent>
     )
     
 }

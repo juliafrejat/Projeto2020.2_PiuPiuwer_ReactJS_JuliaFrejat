@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FormEvent, useState} from 'react';
 
 import logoImg from '../../assets/images/passaro.svg';
 
@@ -8,11 +8,16 @@ import Button from '../../components/Button';
 import Input from '../../components/Input';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
+import logInRequest from '../../services/auth';
 
 function Login() {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
     async function handleLogIn(e: FormEvent) {
         e.preventDefault();
-
+        const response = await logInRequest(username, password);
+        console.log(response);
         
     }
     
@@ -28,10 +33,20 @@ function Login() {
                 </HalfContainer>
                 <HalfContainer className="container-column half-container login">
                     <h2>Entrar</h2>
-                    <form className="container-column">
-                        <Input placeholder="Email ou nome de usuário" />
-                        <Input placeholder="Senha" />
-                        <Button isGreen={true} value="Continuar"/>
+                    <form className="container-column" onSubmit={handleLogIn} >
+                        <Input 
+                            placeholder="Nome de usuário" 
+                            type="text"
+                            onChange={(e) => { setUsername(e.target.value) }}
+                        />
+
+                        <Input 
+                            placeholder="Senha"
+                            type="password"
+                            onChange={(e) => { setPassword(e.target.value) }} 
+                        />
+
+                        <Button isGreen={true} value="Continuar" type="submit" />
                     </form>
                     <p>Esqueceu a senha?</p>
                 </HalfContainer>
