@@ -3,6 +3,7 @@ import styled from 'styled-components';
 interface HeaderProps {
     backgroundColor: string;
     border: string;
+    justification: string;
 }
 
 export const HeaderComponent = styled.header<HeaderProps>`
@@ -12,7 +13,7 @@ export const HeaderComponent = styled.header<HeaderProps>`
     padding: 1vh;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: ${props => props.justification};
 
     a {
         color: #FFFFFF;
@@ -61,8 +62,9 @@ export const HeaderComponent = styled.header<HeaderProps>`
         margin: 0.5vh;
     }
 
+    
+
     @media (max-width: 900px) {
-        justify-content: center;
         .nav {
             width: 70%;
             min-width: fit-content;

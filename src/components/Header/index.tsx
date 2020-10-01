@@ -17,13 +17,14 @@ interface HeaderProps {
     hasMenu: boolean;
     backgroundColor?: string;
     border?: string;
+    justification?: string;
 }
 
 const Header: React.FC<HeaderProps> = (props) => {
     const hasMenu = props.hasMenu;
     if (hasMenu){
         return (
-            <HeaderComponent className="page-header" backgroundColor="var(--color-primary)" border="none">
+            <HeaderComponent className="page-header" backgroundColor="var(--color-primary)" border="none" justification="space-between">
                 <div className="container-row title">
                     <Link to="/">
                         <img src={logoImg} alt="PiuPiuwer" />
@@ -48,7 +49,7 @@ const Header: React.FC<HeaderProps> = (props) => {
         )
     } else {
         return (
-            <HeaderComponent className="page-header" backgroundColor="#FFFFFF" border="1px solid var(--color-secondary-light)">
+            <HeaderComponent className="page-header" backgroundColor="#FFFFFF" border="1px solid var(--color-secondary-light)" justification="flex-end">
                 <Button isGreen={true} value="Cadastre-se" />
             </HeaderComponent>
         )
