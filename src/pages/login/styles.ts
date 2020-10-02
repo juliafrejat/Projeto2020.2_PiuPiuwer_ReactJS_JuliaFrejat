@@ -34,6 +34,11 @@ export const HalfContainer = styled.div<DivProps>`
         margin-top: 8%;
     }
 
+    .error-txt {
+        display: none;
+        color: var(--color-error-dark);
+    }
+
     @media (max-width: 700px) {
         min-height: 25vh;
         width: 100vw;

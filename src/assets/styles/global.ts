@@ -14,6 +14,8 @@ export default createGlobalStyle`
         --color-secondary: #6C757D;
         --color-secondary-dark: #495057;
         --color-secondary-darker: #343A40;
+        --color-error-light: #FFD8D8;
+        --color-error-dark: #FF7F7F;
     }
 
     * {

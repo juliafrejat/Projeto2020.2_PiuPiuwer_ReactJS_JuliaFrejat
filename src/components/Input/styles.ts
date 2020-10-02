@@ -10,6 +10,7 @@ export const InputComponent = styled.input<InputProps>`
     border: 1px solid var(--color-secondary-lighter);
     box-shadow: 0 5px 5px rgb(0,0,0,0.1);
     min-width: 250px;
+    transition: background-color 0.2s;
 
     ::placeholder {
         opacity: 0.5;

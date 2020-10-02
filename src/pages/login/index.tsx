@@ -1,4 +1,6 @@
-import React, {FormEvent, useState} from 'react';
+import React, {FormEvent, useState, useContext, useCallback} from 'react';
+
+import { useAuth } from '../../hooks/useAuth';
 
 import logoImg from '../../assets/images/passaro.svg';
 
@@ -8,18 +10,21 @@ import Button from '../../components/Button';
 import Input from '../../components/Input';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
-import logInRequest from '../../services/auth';
+
+
 
 function Login() {
+    const { user, token, logIn } = useAuth();
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    async function handleLogIn(e: FormEvent) {
+    const handleLogIn = useCallback((e: FormEvent) => {
         e.preventDefault();
-        const response = await logInRequest(username, password);
-        console.log(response);
+        logIn({username, password});
+        console.log('user: ', user, 'token: ', token);
         
-    }
+    }, [username, password]);
     
     return (
         <div className="container-column full-body-login">
@@ -33,7 +38,7 @@ function Login() {
                 </HalfContainer>
                 <HalfContainer className="container-column half-container login">
                     <h2>Entrar</h2>
-                    <form className="container-column" onSubmit={handleLogIn} >
+                    <form className="container-column error" onSubmit={handleLogIn} >
                         <Input 
                             placeholder="Nome de usuário" 
                             type="text"
@@ -45,6 +50,8 @@ function Login() {
                             type="password"
                             onChange={(e) => { setPassword(e.target.value) }} 
                         />
+
+                        <p className="error-txt" hidden>Mensagem de erro</p>
 
                         <Button isGreen={true} value="Continuar" type="submit" />
                     </form>
