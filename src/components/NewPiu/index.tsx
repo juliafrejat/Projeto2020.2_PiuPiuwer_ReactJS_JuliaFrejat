@@ -6,7 +6,7 @@ import Button from '../Button';
 
 import galleryIcon from '../../assets/images/post_galeria.svg';
 import cameraIcon from '../../assets/images/post_camera.svg';
-import emotionIcon from '../../assets/images/post_emoji.svg';
+import emotIcon from '../../assets/images/post_emoji.svg';
 import pollIcon from '../../assets/images/post_votacao.svg';
 import profilePic from '../../assets/images/foto_de_perfil.png';
 
@@ -21,7 +21,7 @@ const NewPiu: React.FC<NewPiuProps> = (props) => {
             className="container-column post"
         >
             <div className="container-row withinPost">
-                <a href=""><img src={profilePic} alt="Julia Frejat"/></a>
+                <a href="/"><img src={profilePic} alt="Julia Frejat"/></a>
                 <div className="container-row" id="newPost-txt">
                     <Textarea id="newPostTextarea" placeholder="Digite um novo piu." />
                 </div>
@@ -34,10 +34,10 @@ const NewPiu: React.FC<NewPiuProps> = (props) => {
 
             <div className="container-row postButtons">
                 <div className="container-row withinPost interact">
-                    <a href=""><img src={galleryIcon}/></a>
-                    <a href=""><img src={cameraIcon}/></a>
-                    <a href=""><img src={emotionIcon}/></a>
-                    <a href=""><img src={pollIcon}/></a>
+                    <a href="/"><img src={galleryIcon} alt="Galeria"/></a>
+                    <a href="/"><img src={cameraIcon} alt="Camera"/></a>
+                    <a href="/"><img src={emotIcon} alt="Emoticon"/></a>
+                    <a href="/"><img src={pollIcon} alt="Votação"/></a>
                 </div>
                 <Button isGreen={true} value="Piu Piu" />
             </div>

@@ -14,6 +14,10 @@ export interface user {
     email: string;
 }
 
+/* interface error {
+    value: string;
+} */
+
 interface AuthState {
     token: string;
     user: object;
@@ -22,20 +26,22 @@ interface AuthState {
 interface AuthContextData {
     user: object;
     token: string;
-    logIn(user: object): void;
+    logIn(user: object): object;
+    logOut(): void;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({children}) => {
     const [data, setData] = useState<AuthState>({} as AuthState);
+    //const [errorTxt, setErrorTxt] = useState<error>({} as error);
 
     useEffect(() => {
         const token = localStorage.getItem('@Project:token');
         const user = localStorage.getItem('@Project:user');
 
         if (user && token) {
-            api.defaults.headers.authorization = `JWT ${token}`;
+            api.defaults.headers.Authorization = `JWT ${token}`;
             setData({ user: JSON.parse(user), token: token });
         }
 
@@ -53,28 +59,36 @@ export const AuthProvider: React.FC = ({children}) => {
                 const user = userResponse.data[0];
                 localStorage.setItem('@Project:user', JSON.stringify(user));
 
-                api.defaults.headers.authorization = `JWT ${token}`;
+                api.defaults.headers.Authorization = `JWT ${token}`;
                 setData({ token, user });
+
+                //setErrorTxt({value:''});
             }
         } catch (error) {
             const response = error.response;
 
             if (response.global) {
-                return 'Usuário e/ou senha incorretos';
+                //setErrorTxt({value:'Usuário e/ou senha incorretos'});
             }
 
             if (response.username) {
-                return 'Usuário não pode ser em branco.'
+                //setErrorTxt({value:'Usuário não pode ser em branco.'});
             }
 
             if (response.password) {
-                return 'Senha não pode ser em branco.'
+                //setErrorTxt({value:'Senha não pode ser em branco.'});
             }
         }
     }, []);
 
+    const logOut = () => {
+        localStorage.removeItem('@Project:token');
+        localStorage.removeItem('@Project:user');
+        setData({} as AuthState);
+    }
+
     return (
-        <AuthContext.Provider value={{token: data.token, user: data.user, logIn}}>
+        <AuthContext.Provider value={{token: data.token, user: data.user, logIn, logOut}}>
             {children}
         </AuthContext.Provider>
     )

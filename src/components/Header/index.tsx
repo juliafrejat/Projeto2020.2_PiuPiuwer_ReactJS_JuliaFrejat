@@ -13,6 +13,7 @@ import moreIcon from '../../assets/images/mais.svg';
 import searchIcon from '../../assets/images/busca.svg';
 import Button from '../Button';
 
+
 interface HeaderProps {
     hasMenu: boolean;
     backgroundColor?: string;
@@ -22,6 +23,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = (props) => {
     const hasMenu = props.hasMenu;
+
     if (hasMenu){
         return (
             <HeaderComponent className="page-header" backgroundColor="var(--color-primary)" border="none" justification="space-between">
@@ -39,6 +41,9 @@ const Header: React.FC<HeaderProps> = (props) => {
                     <Link to="/notifications"><img src={notifIcon} alt="Notificações" /></Link>
                     <Link to="/profile"><img src={profileIcon} alt="Perfil" /></Link>
                     <Link to="/"><img src={moreIcon} alt="Mais" id="more" /></Link>
+
+                    
+
                 </div>
 
                 <form className="container-row search">

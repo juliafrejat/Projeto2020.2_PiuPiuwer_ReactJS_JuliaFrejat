@@ -1,4 +1,4 @@
-import React, {FormEvent, useState, useContext, useCallback} from 'react';
+import React, {FormEvent, useState, useCallback} from 'react';
 
 import { useAuth } from '../../hooks/useAuth';
 
@@ -22,7 +22,6 @@ function Login() {
     const handleLogIn = useCallback((e: FormEvent) => {
         e.preventDefault();
         logIn({username, password});
-        
     }, [username, password]);
     
     return (
