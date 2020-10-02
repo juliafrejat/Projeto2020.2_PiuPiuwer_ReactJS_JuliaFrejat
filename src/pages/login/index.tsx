@@ -14,7 +14,7 @@ import Header from '../../components/Header';
 
 
 function Login() {
-    const { user, token, logIn } = useAuth();
+    const { logIn } = useAuth();
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -22,7 +22,6 @@ function Login() {
     const handleLogIn = useCallback((e: FormEvent) => {
         e.preventDefault();
         logIn({username, password});
-        console.log('user: ', user, 'token: ', token);
         
     }, [username, password]);
     
