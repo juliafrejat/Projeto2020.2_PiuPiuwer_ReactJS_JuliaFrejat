@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 
 import { usePius } from '../../hooks/usePius';
 import Piu from '../Piu';
@@ -10,10 +10,14 @@ function PiusArea() {
         piusRequest();
     }, []);
 
+    const piuComponents = useMemo(() => {
+        return pius.map((piu) => (<Piu key={piu.id} piuData={piu}/>))
+    }, [pius]);
+
     return (
-        pius.map((piu) => (
-            <Piu id={piu.id} piuData={piu}/>
-        ))
+        <>
+            {piuComponents}
+        </>
     )
 }
 

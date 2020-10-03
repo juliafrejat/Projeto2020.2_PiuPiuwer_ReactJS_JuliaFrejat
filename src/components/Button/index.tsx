@@ -9,6 +9,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     textColor?: string;
     border?: string;
     value: string;
+    onClick?(e: any): Promise<void>;
 }
 
 const Button: React.FC<ButtonProps> = (props) => {
@@ -21,6 +22,7 @@ const Button: React.FC<ButtonProps> = (props) => {
                 textColor="#FFFFFF"
                 border="none"
                 type={props.type}
+                onClick={props.onClick}
             >
                 {props.value}
             </ButtonComponent>
@@ -34,6 +36,7 @@ const Button: React.FC<ButtonProps> = (props) => {
                 textColor="var(--color-primary)"
                 border="2px solid var(--color-primary)"
                 type={props.type}
+                onClick={props.onClick}
             >
                 {props.value}
             </ButtonComponent>

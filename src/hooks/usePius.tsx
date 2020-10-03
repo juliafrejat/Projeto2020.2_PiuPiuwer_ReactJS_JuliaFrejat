@@ -3,7 +3,7 @@ import api from '../services/api';
 import { User } from './useAuth';
 
 export interface PiuData {
-    user: User;
+    usuario: User;
     likers: Array<User>;
     favoritado_por: Array<User>;
     texto: string;
@@ -14,9 +14,11 @@ export interface PiuData {
 interface PiusContextData {
     pius: Array<PiuData>;
     piusRequest(): Promise<void>;
+    sendPiu(idUsuarioLogado: number, textoPiu: string): Promise<void>;
     handleFavorite(): Promise<void>;
     handleLike(): Promise<void>;
-    handleDelete(): Promise<void>;
+    handleDelete(piu: PiuData): Promise<void>;
+    //findPiuId(piu: HTMLDivElement): number;
 }
 
 const PiusContext = createContext<PiusContextData>({} as PiusContextData);
@@ -29,6 +31,14 @@ export const PiusProvider: React.FC = ({children}) => {
         console.log(response);
         setPius(response.data)
     }, []);
+
+    const sendPiu = useCallback(async (idUsuarioLogado, textoPiu) => {
+        const response = await api.post('/pius/', {
+            usuario: idUsuarioLogado,
+            texto: textoPiu
+        })
+        setPius([ ...pius, response.data ]);
+    }, [setPius, api, pius])
     
     const handleFavorite = async () => {
         var favoriteCounter = 0;
@@ -38,6 +48,7 @@ export const PiusProvider: React.FC = ({children}) => {
             // fazer request pra tirar
         }
     }
+
     const handleLike = async () => {
         var likeCounter = 0;
         if (likeCounter%2 == 1) {
@@ -46,12 +57,18 @@ export const PiusProvider: React.FC = ({children}) => {
             // fazer request pra tirar
         }
     }
-    const handleDelete = async () => {
-            
+
+    const handleDelete = async (piu: PiuData) => {
+        const piuId = piu.id;
+        api.delete(`/pius/${piuId}`)
     }
 
+    /* const findPiuId = (piu: HTMLDivElement) => {
+
+    } */
+
     return (
-        <PiusContext.Provider value={{ pius, piusRequest, handleFavorite, handleLike, handleDelete }}>
+        <PiusContext.Provider value={{ pius, piusRequest, sendPiu, handleFavorite, handleLike, handleDelete }}>
             {children}
         </PiusContext.Provider>
     )

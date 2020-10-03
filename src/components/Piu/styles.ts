@@ -6,12 +6,19 @@ interface PiuProps {
 
 export const PiuComponent = styled.div<PiuProps>`
     background-color: #ffffff;
-    color: #495057;
     padding: 15px !important;
     margin-bottom: 25px;
     border-radius: 15px;
     box-shadow: 0 5px 5px rgb(0,0,0,0.15);
     align-items: flex-start;
+
+    p {
+        font-size: 14px;
+    }
+    
+    small {
+        font-size: 12px;
+    }
 
     img {
         height: 50px;
@@ -31,59 +38,76 @@ export const PiuComponent = styled.div<PiuProps>`
     }
 
     .interact {
-        width: fit-content !important;
         flex-shrink: 1;
+        justify-content: space-between;
+        width: 40% !important;
+        align-self: flex-start;
     }
 
-    .subdivName{
+    .subdivName {
         align-items: flex-start;
         justify-content: start;
-        width: fit-content;
+        width: fit-content !important;
     }
     
-    .divName{
+    .divName {
         align-items: flex-start;
         padding-bottom: 0;
+        width: fit-content !important;
     }
     
-    .divNameTime{
+    .divNameTime {
         align-items: flex-start;
         justify-content: space-between;
         padding-bottom: 0;
     }
+
+    .divNameTime .time {
+        width: fit-content !important;
+        margin: 1vh 1vw;
+    }
     
-    .name{
+    .name {
         font-weight: bold;
         padding-bottom: 2px;
     }
     
-    .text{
+    .text {
         padding: 10px 15px;
         width: 100%;
         overflow-wrap: break-word;
     }
     
-    .destaque{
+    .destaque {
         order: 1;
         background-color: #d8f3dc;
     }
     
-    .notCircImg{
+    .notCircImg {
         width: 50px;
         height: 50px;
         position: relative;
         overflow: hidden;
         border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        outline: inherit;
+        margin: 0 10px;
     }
     
-    .notCircImg img{
+    .notCircImg img {
         display: inline;
         margin: 0 auto;
-        margin-left: -25%;
-        padding: 0px 10px;
+        margin-left: -20%;
     }
-    
-    .invisible{
-        display: none;
-    }
+`;
+
+export const InteractionButton = styled.button`
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0 15px;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
 `;

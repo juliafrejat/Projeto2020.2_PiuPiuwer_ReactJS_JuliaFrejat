@@ -3,6 +3,7 @@ import Footer from '../../components/Footer';
 
 import Header from '../../components/Header';
 import NewPiu from '../../components/NewPiu';
+import PiusArea from '../../components/PiusArea';
 
 import { Body } from './styles';
 
@@ -19,8 +20,7 @@ function Feed() {
                 <div className="container-column" id="posts">
                     <NewPiu />
 
-                    <div className="container-column" id="oldPosts">
-                    </div>
+                    <PiusArea />
                 </div>
 
                 <aside className="container-column">

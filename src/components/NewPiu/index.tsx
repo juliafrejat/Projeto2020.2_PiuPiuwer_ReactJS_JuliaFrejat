@@ -10,16 +10,27 @@ import emotIcon from '../../assets/images/post_emoji.svg';
 import pollIcon from '../../assets/images/post_votacao.svg';
 import profilePic from '../../assets/images/foto_de_perfil.png';
 
+import { usePius } from '../../hooks/usePius';
+import { useAuth } from '../../hooks/useAuth';
+
 
 interface NewPiuProps extends FormHTMLAttributes<HTMLFormElement> {
 }
 
 const NewPiu: React.FC<NewPiuProps> = (props) => {
+    const { sendPiu } = usePius();
+    const { loggedUserData } = useAuth();
+
     const [textoDePiu, setTextoDePiu] = useState('');
 
     const handleTextPiuChange = useCallback((e) => {
         setTextoDePiu(e.target.value);
     }, [setTextoDePiu]);
+
+    const handleSendPiu = useCallback(async (e) => {
+        e.preventDefault();
+        sendPiu(loggedUserData.id, textoDePiu);
+    }, [sendPiu, loggedUserData, textoDePiu])
 
     return (
         <NewPiuComponent 
@@ -27,7 +38,7 @@ const NewPiu: React.FC<NewPiuProps> = (props) => {
             className="container-column post"
         >
             <div className="container-row withinPost">
-                <a href="/"><img src={profilePic} alt="Julia Frejat"/></a>
+                <button className="notCircImg"><img src={loggedUserData.foto} alt="Julia Frejat"/></button>
                 <div className="container-row" id="newPost-txt">
                     <Textarea 
                         id="newPostTextarea" 
@@ -45,12 +56,12 @@ const NewPiu: React.FC<NewPiuProps> = (props) => {
 
             <div className="container-row postButtons">
                 <div className="container-row withinPost interact">
-                    <a href="/"><img src={galleryIcon} alt="Galeria"/></a>
-                    <a href="/"><img src={cameraIcon} alt="Camera"/></a>
-                    <a href="/"><img src={emotIcon} alt="Emoção"/></a>
-                    <a href="/"><img src={pollIcon} alt="Votação"/></a>
+                    <button><img src={galleryIcon} alt="Galeria"/></button>
+                    <button><img src={cameraIcon} alt="Camera"/></button>
+                    <button><img src={emotIcon} alt="Emoção"/></button>
+                    <button><img src={pollIcon} alt="Votação"/></button>
                 </div>
-                <Button isGreen={true} value="Piu Piu" />
+                <Button isGreen={true} value="Piu Piu" onClick={handleSendPiu} />
             </div>
         </NewPiuComponent>
     )

@@ -17,14 +17,33 @@ export const NewPiuComponent = styled.form<NewPiuProps>`
         height: 50px;
     }
 
+    .notCircImg {
+        width: 50px;
+        height: 50px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        outline: inherit;
+        margin: 0px 10px;
+    }
+    
+    .notCircImg img {
+        display: inline;
+        margin: 0 auto;
+        margin-left: -20%;
+    }
+
     .withinPost {
         padding: 10px 0px;
     }
 
     #newPost-txt {
-        background-color: #E9ECEF;
-        padding: 5px 10px;
-        border-radius: 20px;
+        background-color: transparent;
+        padding: 0;
+        margin: 0;
+        width: 80%;
     }
 
     .interact a {

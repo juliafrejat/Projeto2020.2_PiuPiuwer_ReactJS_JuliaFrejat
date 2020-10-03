@@ -9,4 +9,7 @@ export const TextareaComponent = styled.textarea<TextareaProps>`
     margin: 2px 10px;
     resize: vertical;
     min-height: auto;
+    background-color: var(--color-secondary-lighter);
+    padding: 10px 15px;
+    border-radius: 20px;
 `;
