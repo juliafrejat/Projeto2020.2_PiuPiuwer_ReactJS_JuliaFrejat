@@ -129,6 +129,10 @@ export default createGlobalStyle`
         height: auto;
     }
 
+    #oldPosts{
+        flex-direction: column-reverse;
+    }
+
     @media (min-width: 700px) {
         :root {
             font-size: 62.5%;

@@ -35,8 +35,9 @@ export const HalfContainer = styled.div<DivProps>`
     }
 
     .error-txt {
-        display: none;
+        display: inline;
         color: var(--color-error-dark);
+        font-weight: bold;
     }
 
     @media (max-width: 700px) {

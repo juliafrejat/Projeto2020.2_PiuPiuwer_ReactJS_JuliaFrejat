@@ -14,9 +14,9 @@ export interface user {
     email: string;
 }
 
-/* interface error {
+interface error {
     value: string;
-} */
+}
 
 interface AuthState {
     token: string;
@@ -28,13 +28,14 @@ interface AuthContextData {
     token: string;
     logIn(user: object): object;
     logOut(): void;
+    errorTxt: string;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({children}) => {
     const [data, setData] = useState<AuthState>({} as AuthState);
-    //const [errorTxt, setErrorTxt] = useState<error>({} as error);
+    const [errorTxt, setErrorTxt] = useState<error>({} as error);
 
     useEffect(() => {
         const token = localStorage.getItem('@Project:token');
@@ -62,21 +63,25 @@ export const AuthProvider: React.FC = ({children}) => {
                 api.defaults.headers.Authorization = `JWT ${token}`;
                 setData({ token, user });
 
-                //setErrorTxt({value:''});
+                setErrorTxt({value:''});
             }
         } catch (error) {
-            const response = error.response;
+            const response = error.response.data;
 
             if (response.global) {
-                //setErrorTxt({value:'Usuário e/ou senha incorretos'});
+                setErrorTxt({value:'Usuário e/ou senha incorretos'});
             }
 
             if (response.username) {
-                //setErrorTxt({value:'Usuário não pode ser em branco.'});
+                setErrorTxt({value:'Usuário não pode ser em branco.'});
             }
 
             if (response.password) {
-                //setErrorTxt({value:'Senha não pode ser em branco.'});
+                setErrorTxt({value:'Senha não pode ser em branco.'});
+            }
+
+            if (response.password && response.username) {
+                setErrorTxt({value:'Usuário e senha não podem ser em branco.'});
             }
         }
     }, []);
@@ -88,7 +93,7 @@ export const AuthProvider: React.FC = ({children}) => {
     }
 
     return (
-        <AuthContext.Provider value={{token: data.token, user: data.user, logIn, logOut}}>
+        <AuthContext.Provider value={{token: data.token, user: data.user, logIn, logOut, errorTxt: errorTxt.value}}>
             {children}
         </AuthContext.Provider>
     )

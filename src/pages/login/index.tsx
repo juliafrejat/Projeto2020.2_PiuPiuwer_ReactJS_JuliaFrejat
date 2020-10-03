@@ -14,7 +14,7 @@ import Header from '../../components/Header';
 
 
 function Login() {
-    const { logIn } = useAuth();
+    const { logIn, errorTxt } = useAuth();
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -49,7 +49,7 @@ function Login() {
                             onChange={(e) => { setPassword(e.target.value) }} 
                         />
 
-                        <p className="error-txt" hidden>Mensagem de erro</p>
+                        <p className="error-txt">{errorTxt}</p>
 
                         <Button isGreen={true} value="Continuar" type="submit" />
                     </form>
