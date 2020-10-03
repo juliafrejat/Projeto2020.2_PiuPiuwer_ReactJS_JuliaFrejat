@@ -62,6 +62,17 @@ export const HeaderComponent = styled.header<HeaderProps>`
         margin: 0.5vh;
     }
 
+    .nav button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
+    .nav button:active, .nav button:focus {
+        outline: none;
+        border: none;
+    }
+
     
 
     @media (max-width: 900px) {

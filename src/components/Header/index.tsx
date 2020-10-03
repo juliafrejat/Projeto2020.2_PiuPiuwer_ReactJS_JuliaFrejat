@@ -9,9 +9,10 @@ import exploreIcon from '../../assets/images/explorar.svg';
 import messageIcon from '../../assets/images/mensagem.svg';
 import notifIcon from '../../assets/images/notificacao.svg';
 import profileIcon from '../../assets/images/perfil.svg';
-import moreIcon from '../../assets/images/mais.svg';
 import searchIcon from '../../assets/images/busca.svg';
+
 import Button from '../Button';
+import Dropdown from '../Dropdown';
 
 
 interface HeaderProps {
@@ -40,10 +41,7 @@ const Header: React.FC<HeaderProps> = (props) => {
                     <Link to="/messages"><img src={messageIcon} alt="Mensagens" /></Link>
                     <Link to="/notifications"><img src={notifIcon} alt="Notificações" /></Link>
                     <Link to="/profile"><img src={profileIcon} alt="Perfil" /></Link>
-                    <Link to="/"><img src={moreIcon} alt="Mais" id="more" /></Link>
-
-                    
-
+                    <Dropdown />
                 </div>
 
                 <form className="container-row search">
