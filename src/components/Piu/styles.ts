@@ -27,10 +27,6 @@ export const PiuComponent = styled.div<PiuProps>`
     .withinPost {
         padding: 10px 0px;
     }
-
-    .interact a {
-        padding: 0px 15px
-    }
     
     .interact img {
         height: 20px;
@@ -42,6 +38,7 @@ export const PiuComponent = styled.div<PiuProps>`
         justify-content: space-between;
         width: 40% !important;
         align-self: flex-start;
+        margin-top: 3%
     }
 
     .subdivName {
@@ -106,7 +103,7 @@ export const InteractionButton = styled.button`
     background: none;
     color: inherit;
     border: none;
-    padding: 0 15px;
+    padding: 0 16% 0 10%;
     font: inherit;
     cursor: pointer;
     outline: inherit;

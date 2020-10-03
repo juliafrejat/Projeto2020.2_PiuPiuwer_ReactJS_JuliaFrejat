@@ -1,6 +1,6 @@
 import React, { FormHTMLAttributes, useCallback, useState } from 'react';
 
-import { Counter, NewPiuComponent } from './styles';
+import { Counter, InteractionButton, NewPiuComponent } from './styles';
 import Textarea from '../Textarea';
 import Button from '../Button';
 
@@ -56,10 +56,10 @@ const NewPiu: React.FC<NewPiuProps> = (props) => {
 
             <div className="container-row postButtons">
                 <div className="container-row withinPost interact">
-                    <button><img src={galleryIcon} alt="Galeria"/></button>
-                    <button><img src={cameraIcon} alt="Camera"/></button>
-                    <button><img src={emotIcon} alt="Emoção"/></button>
-                    <button><img src={pollIcon} alt="Votação"/></button>
+                    <InteractionButton><img src={galleryIcon} alt="Galeria"/></InteractionButton>
+                    <InteractionButton><img src={cameraIcon} alt="Camera"/></InteractionButton>
+                    <InteractionButton><img src={emotIcon} alt="Emoção"/></InteractionButton>
+                    <InteractionButton><img src={pollIcon} alt="Votação"/></InteractionButton>
                 </div>
                 <Button isGreen={true} value="Piu Piu" onClick={handleSendPiu} />
             </div>

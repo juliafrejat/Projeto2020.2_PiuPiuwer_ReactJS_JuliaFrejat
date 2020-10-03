@@ -46,17 +46,13 @@ export const NewPiuComponent = styled.form<NewPiuProps>`
         width: 80%;
     }
 
-    .interact a {
-        padding: 0px 15px
-    }
-    
     .interact img {
         height: 20px;
         padding: 0;
     }
 
     .interact {
-        width: fit-content !important;
+        width: 70% !important;
         flex-shrink: 1;
     }
 
@@ -107,4 +103,14 @@ export const Counter = styled.p<CounterProps>`
     padding: 0px 20px;
     color: ${props => props.limitReached ? 'var(--color-error-dark)' : 'var(--color-secondary-dark)'};
     font-weight: ${props => props.limitReached ? 'bold' : 'normal'};
+`;
+
+export const InteractionButton = styled.button`
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0 9% 0 6%;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
 `;
