@@ -6,50 +6,33 @@ import favoriteIcon from '../../assets/images/post_destaque.svg';
 import likeIcon from '../../assets/images/post_like.svg';
 import deleteIcon from '../../assets/images/post_deletar.svg';
 
+import { PiuData, usePius } from '../../hooks/usePius';
+import { useAuth } from '../../hooks/useAuth';
+
 interface PiuProps {
+    piuData: PiuData;
+    id: number;
 }
 
-const Piu: React.FC<PiuProps> = (props, piu) => {
-    const loggedUser = localStorage.getItem('@Project:user');
-
-    const handleFavorite = () => {
-        var favoriteCounter = 0;
-        if (favoriteCounter%2 == 1) {
-            // fazer request pra adicionar
-        } else {
-            // fazer request pra tirar
-        }
-    }
-    const handleLike = () => {
-        var likeCounter = 0;
-        if (likeCounter%2 == 1) {
-            // fazer request pra adicionar
-        } else {
-            // fazer request pra tirar
-        }
-    }
-    const handleDelete = () => {
-        if (piu.user === loggedUser)  {
-            // fazer request pra deletar
-        }
-            
-    }
+const Piu: React.FC<PiuProps> = ({ piuData }) => {
+    const { loggedUserData } = useAuth();
+    const { handleFavorite, handleLike, handleDelete } = usePius();
 
     return (
         <PiuComponent className="container-column post oldPost">
             <div className="container-row withinPost divNameTime">
                 <div className="container-row divName">
-                    <a className="notCircImg"><img src={piu.user.foto} alt={piu.user.first_name+' '+piu.user.last_name}/></a>
+                    <a className="notCircImg"><img src={piuData.user.foto} alt={piuData.user.first_name+' '+piuData.user.last_name}/></a>
                     <div className="container-column subdivName">
-                        <p className="name">{piu.user.first_name+' '+piu.user.last_name}</p>
-                        <small>{'@'+piu.user.username}</small>
+                        <p className="name">{piuData.user.first_name+' '+piuData.user.last_name}</p>
+                        <small>{'@'+piuData.user.username}</small>
                     </div>
                 </div>
-                <small>{piu.time}</small>
+                <small>{piuData.horario}</small>
             </div>
 
             <div className="container-row withinPost">
-                <p className="text">{piu.texto}</p>
+                <p className="text">{piuData.texto}</p>
             </div>
 
             <div className="container-row withinPost interact">

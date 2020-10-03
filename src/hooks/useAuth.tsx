@@ -1,30 +1,27 @@
 import React, {createContext, useCallback, useContext, useEffect, useState} from 'react';
 import api from '../services/api';
+import { PiuData } from './usePius';
 
-export interface user {
+export interface User {
     username: string;
     first_name: string;
     last_name: string;
     foto: string;
-    seguidores?: [];
+    seguidores?: Array<User>;
     id: number;
-    pius: [];
-    favoritos: [];
-    seguindo?: [];
+    pius: Array<PiuData>;
+    favoritos: Array<User>;
+    seguindo?: Array<User>;
     email: string;
-}
-
-interface error {
-    value: string;
 }
 
 interface AuthState {
     token: string;
-    user: object;
+    user: User;
 }
 
 interface AuthContextData {
-    user: object;
+    loggedUserData: User;
     token: string;
     logIn(user: object): object;
     logOut(): void;
@@ -35,7 +32,7 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({children}) => {
     const [data, setData] = useState<AuthState>({} as AuthState);
-    const [errorTxt, setErrorTxt] = useState<error>({} as error);
+    const [errorTxt, setErrorTxt] = useState<string>('');
 
     useEffect(() => {
         const token = localStorage.getItem('@Project:token');
@@ -63,25 +60,25 @@ export const AuthProvider: React.FC = ({children}) => {
                 api.defaults.headers.Authorization = `JWT ${token}`;
                 setData({ token, user });
 
-                setErrorTxt({value:''});
+                setErrorTxt('');
             }
         } catch (error) {
             const response = error.response.data;
 
             if (response.global) {
-                setErrorTxt({value:'Usuário e/ou senha incorretos'});
+                setErrorTxt('Usuário e/ou senha incorretos');
             }
 
             if (response.username) {
-                setErrorTxt({value:'Usuário não pode ser em branco.'});
+                setErrorTxt('Usuário não pode ser em branco.');
             }
 
             if (response.password) {
-                setErrorTxt({value:'Senha não pode ser em branco.'});
+                setErrorTxt('Senha não pode ser em branco.');
             }
 
             if (response.password && response.username) {
-                setErrorTxt({value:'Usuário e senha não podem ser em branco.'});
+                setErrorTxt('Usuário e senha não podem ser em branco.');
             }
         }
     }, []);
@@ -93,7 +90,7 @@ export const AuthProvider: React.FC = ({children}) => {
     }
 
     return (
-        <AuthContext.Provider value={{token: data.token, user: data.user, logIn, logOut, errorTxt: errorTxt.value}}>
+        <AuthContext.Provider value={{token: data.token, loggedUserData: data.user, logIn, logOut, errorTxt}}>
             {children}
         </AuthContext.Provider>
     )

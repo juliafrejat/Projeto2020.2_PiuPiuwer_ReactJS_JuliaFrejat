@@ -47,12 +47,6 @@ export const NewPiuComponent = styled.form<NewPiuProps>`
         justify-content: space-between;
         flex-wrap: wrap;
     }
-
-    #charCounter {
-        font-size: 12px;
-        padding: 0px 20px;
-        
-    }
     
     #errorMsg {
         font-size: 12px;
@@ -83,4 +77,15 @@ export const NewPiuComponent = styled.form<NewPiuProps>`
         justify-content: space-between;
     
     }
+`;
+
+interface CounterProps {
+    limitReached: boolean;
+}
+
+export const Counter = styled.p<CounterProps>`
+    font-size: 12px;
+    padding: 0px 20px;
+    color: ${props => props.limitReached ? 'var(--color-error-dark)' : 'var(--color-secondary-dark)'};
+    font-weight: ${props => props.limitReached ? 'bold' : 'normal'};
 `;

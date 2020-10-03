@@ -22,7 +22,7 @@ function Login() {
     const handleLogIn = useCallback((e: FormEvent) => {
         e.preventDefault();
         logIn({username, password});
-    }, [username, password]);
+    }, [username, password, logIn]);
     
     return (
         <div className="container-column full-body-login">

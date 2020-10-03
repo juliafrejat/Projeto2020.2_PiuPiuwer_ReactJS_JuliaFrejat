@@ -1,6 +1,6 @@
 import React, { FormHTMLAttributes, useCallback, useState } from 'react';
 
-import { NewPiuComponent } from './styles';
+import { Counter, NewPiuComponent } from './styles';
 import Textarea from '../Textarea';
 import Button from '../Button';
 
@@ -15,13 +15,11 @@ interface NewPiuProps extends FormHTMLAttributes<HTMLFormElement> {
 }
 
 const NewPiu: React.FC<NewPiuProps> = (props) => {
-    const [count, setCount] = useState(0);
-    const textarea = document.querySelector("#newPostTextarea");
+    const [textoDePiu, setTextoDePiu] = useState('');
 
-    const handleCounter = useCallback(() => {
-        var textLength = textarea?.nodeValue.length;
-        setCount(textLength);
-    }, [textarea?.nodeValue]);
+    const handleTextPiuChange = useCallback((e) => {
+        setTextoDePiu(e.target.value);
+    }, [setTextoDePiu]);
 
     return (
         <NewPiuComponent 
@@ -34,13 +32,15 @@ const NewPiu: React.FC<NewPiuProps> = (props) => {
                     <Textarea 
                         id="newPostTextarea" 
                         placeholder="Digite um novo piu."
+                        value={textoDePiu} 
+                        onChange={handleTextPiuChange}
                         />
                 </div>
             </div>
 
             <div className="container-row" id="validText">
                 <p id="errorMsg"></p>
-                <p id="charCounter">{count}/140</p>
+                <Counter limitReached={textoDePiu.length > 140}>{textoDePiu.length}/140</Counter>
             </div>
 
             <div className="container-row postButtons">

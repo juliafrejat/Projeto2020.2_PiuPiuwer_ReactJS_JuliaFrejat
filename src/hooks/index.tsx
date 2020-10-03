@@ -1,14 +1,14 @@
 import React from 'react';
-//import { PiusProvider } from './pius';
+import { PiusProvider } from './usePius';
 
 import { AuthProvider } from './useAuth';
 
 const AppProvider: React.FC = ({ children }) => {
     return (
         <AuthProvider>
-            {/* <PiusProvider> */}
+            <PiusProvider>
                 {children}
-            {/* </PiusProvider> */}
+            </PiusProvider>
         </AuthProvider>
     )
 }
