@@ -47,7 +47,7 @@ const NewPiu: React.FC<NewPiuProps> = (props) => {
                 <div className="container-row withinPost interact">
                     <a href="/"><img src={galleryIcon} alt="Galeria"/></a>
                     <a href="/"><img src={cameraIcon} alt="Camera"/></a>
-                    <a href="/"><img src={emotIcon} alt="Emoticon"/></a>
+                    <a href="/"><img src={emotIcon} alt="Emoção"/></a>
                     <a href="/"><img src={pollIcon} alt="Votação"/></a>
                 </div>
                 <Button isGreen={true} value="Piu Piu" />
