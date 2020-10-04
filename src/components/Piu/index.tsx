@@ -9,6 +9,7 @@ import coloredFavoriteIcon from '../../assets/images/post_destaque_colorido.svg'
 import coloredLikeIcon from '../../assets/images/post_like_colorido.svg';
 
 import { PiuData, usePius } from '../../hooks/usePius';
+import { useAuth } from '../../hooks/useAuth';
 
 interface PiuProps {
     piuData: PiuData;
@@ -19,6 +20,7 @@ interface PiuProps {
 
 const Piu: React.FC<PiuProps> = ({ piuData, isLiked, isFavorited }) => {
     const { favoritePiu, likePiu, deletePiu } = usePius();
+    const { loggedUserData } = useAuth();
 
     const { username, first_name, last_name, foto } = piuData.usuario;
     const { horario, texto, likers } = piuData;
@@ -97,7 +99,7 @@ const Piu: React.FC<PiuProps> = ({ piuData, isLiked, isFavorited }) => {
             <div className="container-row withinPost interact">
                 <InteractionButton onClick={handleLike} show={true}><img src={isLiked? coloredLikeIcon : likeIcon} alt="Camera"/><small>{likeCounter}</small></InteractionButton>
                 <InteractionButton onClick={handleFavorite} show={true}><img src={isFavorited ? coloredFavoriteIcon : favoriteIcon} alt="Galeria"/></InteractionButton>
-                <InteractionButton onClick={handleDelete} show={true}><img src={deleteIcon} alt="Emoticon"/></InteractionButton>
+                <InteractionButton onClick={handleDelete} show={piuData.usuario.username === loggedUserData.username}><img src={deleteIcon} alt="Emoticon"/></InteractionButton>
             </div>
         </PiuComponent>
     )
