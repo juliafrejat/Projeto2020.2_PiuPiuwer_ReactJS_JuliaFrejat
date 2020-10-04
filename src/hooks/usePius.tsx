@@ -1,6 +1,6 @@
 import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import api from '../services/api';
-import { User } from './useAuth';
+import { useAuth, User } from './useAuth';
 
 export interface PiuData {
     usuario: User;
@@ -15,8 +15,8 @@ interface PiusContextData {
     pius: Array<PiuData>;
     piusRequest(): Promise<void>;
     sendPiu(idUsuarioLogado: number, textoPiu: string): Promise<void>;
-    handleFavorite(): Promise<void>;
-    handleLike(): Promise<void>;
+    handleFavorite(piu: PiuData): Promise<void>;
+    handleLike(piu: PiuData): Promise<void>;
     handleDelete(piu: PiuData): Promise<void>;
     //findPiuId(piu: HTMLDivElement): number;
 }
@@ -24,7 +24,11 @@ interface PiusContextData {
 const PiusContext = createContext<PiusContextData>({} as PiusContextData);
 
 export const PiusProvider: React.FC = ({children}) => {
+    const { loggedUserData } = useAuth();
+
     const [pius, setPius] = useState<Array<PiuData>>([] as Array<PiuData>);
+    const [likeCounter, setLikeCounter] = useState(0);
+    const [favoriteCounter, setFavoriteCounter] = useState(0);
 
     const piusRequest = useCallback(async () => {
         const response = await api.get('/pius/')
@@ -38,29 +42,43 @@ export const PiusProvider: React.FC = ({children}) => {
             texto: textoPiu
         })
         setPius([ ...pius, response.data ]);
-    }, [setPius, api, pius])
+    }, [setPius, pius])
     
-    const handleFavorite = async () => {
-        var favoriteCounter = 0;
+    const handleFavorite = async (piu: PiuData) => {
         if (favoriteCounter%2 == 1) {
-            // fazer request pra adicionar
+            api.post('/pius/favoritar/', {
+                usuario: loggedUserData.id,
+                piu: //id
+            })
+            // mudar cor da estrela
         } else {
-            // fazer request pra tirar
+            api.post('/pius/favoritar/', {
+                usuario: loggedUserData.id,
+                piu: //id
+            })
+            // mudar cor da estrela
         }
     }
 
-    const handleLike = async () => {
-        var likeCounter = 0;
+    const handleLike = async (piu: PiuData) => {
         if (likeCounter%2 == 1) {
-            // fazer request pra adicionar
+            api.post('/pius/dar-like/', {
+                usuario: loggedUserData.id,
+                piu: //id
+            })
+            // mudar cor do coracao
         } else {
-            // fazer request pra tirar
+            api.post('/pius/dar-like/', {
+                usuario: loggedUserData.id,
+                piu: //id
+            })
+            // mudar cor do coracao
         }
     }
 
     const handleDelete = async (piu: PiuData) => {
-        const piuId = piu.id;
-        console.log(piuId);
+        //const piuId = piu.id;
+        //console.log(piuId);
         //api.delete(`/pius/${piuId}`)
     }
 
