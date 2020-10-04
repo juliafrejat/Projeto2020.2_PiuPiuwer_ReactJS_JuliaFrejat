@@ -5,7 +5,7 @@ interface PiuProps {
 }
 
 export const PiuComponent = styled.div<PiuProps>`
-    background-color: #ffffff;
+    background-color: #FFFFFF;
     padding: 15px !important;
     margin-bottom: 25px;
     border-radius: 15px;
@@ -77,7 +77,7 @@ export const PiuComponent = styled.div<PiuProps>`
     
     .destaque {
         order: 1;
-        background-color: #d8f3dc;
+        background-color: var(--color-primary-lighte);
     }
     
     .notCircImg {

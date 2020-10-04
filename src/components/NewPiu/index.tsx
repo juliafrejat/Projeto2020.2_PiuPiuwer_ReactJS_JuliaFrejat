@@ -1,6 +1,6 @@
-import React, { FormHTMLAttributes, useCallback, useState } from 'react';
+import React, { FormHTMLAttributes, useCallback, useEffect, useState } from 'react';
 
-import { Counter, InteractionButton, NewPiuComponent } from './styles';
+import { Counter, EmptyErrorMsg, InteractionButton, NewPiuComponent, TooLongErrorMsg } from './styles';
 import Textarea from '../Textarea';
 import Button from '../Button';
 
@@ -8,7 +8,6 @@ import galleryIcon from '../../assets/images/post_galeria.svg';
 import cameraIcon from '../../assets/images/post_camera.svg';
 import emotIcon from '../../assets/images/post_emoji.svg';
 import pollIcon from '../../assets/images/post_votacao.svg';
-import profilePic from '../../assets/images/foto_de_perfil.png';
 
 import { usePius } from '../../hooks/usePius';
 import { useAuth } from '../../hooks/useAuth';
@@ -29,8 +28,27 @@ const NewPiu: React.FC<NewPiuProps> = (props) => {
 
     const handleSendPiu = useCallback(async (e) => {
         e.preventDefault();
-        sendPiu(loggedUserData.id, textoDePiu);
+
+        if (textoDePiu.length > 0 && textoDePiu.length <= 140) {
+            sendPiu(loggedUserData.id, textoDePiu);
+        } else {
+            setClick(true);
+        }
     }, [sendPiu, loggedUserData, textoDePiu])
+
+    const [error, setError] = useState(false);
+
+    const [click, setClick] = useState(false);
+
+    useEffect(() => {
+        if (textoDePiu.length > 0 && textoDePiu.length <= 140) {
+            setError(false);
+            setClick(false);
+        } else {
+            setError(true);
+            setClick(false);
+        }
+    }, [textoDePiu.length])
 
     return (
         <NewPiuComponent 
@@ -50,7 +68,10 @@ const NewPiu: React.FC<NewPiuProps> = (props) => {
             </div>
 
             <div className="container-row" id="validText">
-                <p id="errorMsg"></p>
+                <p id="errorMsg">
+                    <EmptyErrorMsg isEmpty={textoDePiu.length == 0} click={click}>O piu não pode estar vazio.</EmptyErrorMsg>
+                    <TooLongErrorMsg limitReached={textoDePiu.length > 140} click={click}>O piu não pode ter mais de 140 caracteres.</TooLongErrorMsg>
+                </p>
                 <Counter limitReached={textoDePiu.length > 140}>{textoDePiu.length}/140</Counter>
             </div>
 
@@ -61,7 +82,7 @@ const NewPiu: React.FC<NewPiuProps> = (props) => {
                     <InteractionButton><img src={emotIcon} alt="Emoção"/></InteractionButton>
                     <InteractionButton><img src={pollIcon} alt="Votação"/></InteractionButton>
                 </div>
-                <Button isGreen={true} value="Piu Piu" onClick={handleSendPiu} />
+                <Button isGreen={true} value="Piu Piu" onClick={handleSendPiu} isNotActive={error}/>
             </div>
         </NewPiuComponent>
     )

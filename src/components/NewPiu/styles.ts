@@ -5,8 +5,8 @@ interface NewPiuProps {
 }
 
 export const NewPiuComponent = styled.form<NewPiuProps>`
-    background-color: #ffffff;
-    color: #495057;
+    background-color: #FFFFFF;
+    color: var(--color-secondary-dark);
     padding: 15px !important;
     margin-bottom: 25px;
     border-radius: 15px;
@@ -63,34 +63,19 @@ export const NewPiuComponent = styled.form<NewPiuProps>`
         flex-wrap: wrap;
     }
     
-    #errorMsg {
-        font-size: 12px;
-        color: #ff7f7f;
-        padding-left: 75px;
-    }
-
-    .errorCounter {
-        color: #ff7f7f;
-        font-weight: bold;
-    }
-    
-    .errorText {
-        color: #6c757d;
-    }
-    
-    #piupiu:disabled {
-        opacity: 0.8;
-    }
-    
-    #piupiu:disabled:hover {
-        background-color: #52B788;
-    }
-    
     #validText {
         width: 80%;
         align-self: flex-end;
         justify-content: space-between;
     
+    }
+
+    Button:disabled {
+        opacity: 0.8;
+    }
+
+    Button:disabled:hover {
+        background-color: var(--color-primary);
     }
 `;
 
@@ -113,4 +98,28 @@ export const InteractionButton = styled.button`
     font: inherit;
     cursor: pointer;
     outline: inherit;
+`;
+
+interface TooLongErrorMsgProps {
+    limitReached: boolean;
+    click: boolean;
+}
+
+export const TooLongErrorMsg = styled.p<TooLongErrorMsgProps>`
+    color: var(--color-error-dark);
+    font-size: 12px;
+    font-weight: bold;
+    display: ${props => (props.limitReached && props.click) ? 'inline' : 'none'};
+`;
+
+interface EmptyErrorMsgProps {
+    isEmpty: boolean;
+    click: boolean;
+}
+
+export const EmptyErrorMsg = styled.p<EmptyErrorMsgProps>`
+    color: var(--color-error-dark);
+    font-size: 12px;
+    font-weight: bold;
+    display: ${props => (props.isEmpty && props.click) ? 'inline' : 'none'};
 `;

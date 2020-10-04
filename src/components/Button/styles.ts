@@ -1,10 +1,8 @@
 import styled from 'styled-components';
 
 interface ButtonProps {
-    textColor: string;
-    border: string;
-    backgroundColor: string;
-    hoverBackgroundColor: string;
+    isGreen: boolean;
+    isNotActive?: boolean;
 }
 
 export const ButtonComponent = styled.button<ButtonProps>`
@@ -21,11 +19,11 @@ export const ButtonComponent = styled.button<ButtonProps>`
     font-family: 'Zilla Slab','Courier New',Courier,serif;
     text-rendering: optimizeLegibility !important;
     
-    color:${props => props.textColor};
-    border:${props => props.border};
-    background-color:${props => props.backgroundColor};
+    color:${props => props.isGreen ? '#FFFFFF' : 'var(--color-primary)'};
+    border:${props => props.isGreen ? 'none' : '2px solid var(--color-primary)'};
+    background-color:${props => props.isGreen ? 'var(--color-primary)' : '#FFFFFF'};
 
     &:hover {
-        background-color:${props => props.hoverBackgroundColor};
+        background-color:${props => props.isGreen ? 'var(--color-primary-dark)' : 'var(--color-secondary-lighter)'};
     }
 `;

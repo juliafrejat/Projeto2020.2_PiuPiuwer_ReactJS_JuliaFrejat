@@ -60,7 +60,8 @@ export const PiusProvider: React.FC = ({children}) => {
 
     const handleDelete = async (piu: PiuData) => {
         const piuId = piu.id;
-        api.delete(`/pius/${piuId}`)
+        console.log(piuId);
+        //api.delete(`/pius/${piuId}`)
     }
 
     /* const findPiuId = (piu: HTMLDivElement) => {
