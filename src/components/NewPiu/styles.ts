@@ -97,7 +97,7 @@ interface TooLongErrorMsgProps {
     click: boolean;
 }
 
-export const TooLongErrorMsg = styled.p<TooLongErrorMsgProps>`
+export const TooLongErrorMsg = styled.span<TooLongErrorMsgProps>`
     color: var(--color-error-dark);
     font-size: 12px;
     font-weight: bold;
@@ -109,7 +109,7 @@ interface EmptyErrorMsgProps {
     click: boolean;
 }
 
-export const EmptyErrorMsg = styled.p<EmptyErrorMsgProps>`
+export const EmptyErrorMsg = styled.span<EmptyErrorMsgProps>`
     color: var(--color-error-dark);
     font-size: 12px;
     font-weight: bold;

@@ -5,6 +5,8 @@ import { InteractionButton, PiuComponent } from './styles';
 import favoriteIcon from '../../assets/images/post_destaque.svg';
 import likeIcon from '../../assets/images/post_like.svg';
 import deleteIcon from '../../assets/images/post_deletar.svg';
+import coloredFavoriteIcon from '../../assets/images/post_destaque_colorido.svg';
+import coloredLikeIcon from '../../assets/images/post_like_colorido.svg';
 
 import { PiuData, usePius } from '../../hooks/usePius';
 import { useAuth } from '../../hooks/useAuth';
@@ -12,9 +14,11 @@ import { useAuth } from '../../hooks/useAuth';
 interface PiuProps {
     piuData: PiuData;
     key: number;
+    isLiked: boolean;
+    isFavorited: boolean;
 }
 
-const Piu: React.FC<PiuProps> = ({ piuData }) => {
+const Piu: React.FC<PiuProps> = ({ piuData, isLiked, isFavorited }) => {
     const { loggedUserData } = useAuth();
     const { handleFavorite, handleLike, handleDelete } = usePius();
 
@@ -36,7 +40,7 @@ const Piu: React.FC<PiuProps> = ({ piuData }) => {
         const elapsed = currentTime - parsedPiuTime;
     
         if (elapsed < msPerMinute) {
-             return Math.round(elapsed/1000) + ' s';
+             return (elapsed/1000 < 0) ? '0 s' : Math.round(elapsed/1000) + ' s';
         }
     
         else if (elapsed < msPerHour) {
@@ -60,6 +64,21 @@ const Piu: React.FC<PiuProps> = ({ piuData }) => {
         }
     }, [horario]);
 
+    const handleLikeCorrect = useCallback((e: any) => {
+        e.preventDefault()
+        handleLike(piuData.id)
+    }, [handleLike, piuData])
+
+    const handleFavoriteCorrect = useCallback((e: any) => {
+        e.preventDefault()
+        handleFavorite(piuData.id)
+    }, [handleFavorite, piuData])
+
+    const handleDeleteCorrect = useCallback((e: any) => {
+        e.preventDefault()
+        handleDelete(piuData.id)
+    }, [handleDelete, piuData])
+
     return (
         <PiuComponent className="container-column post oldPost">
             <div className="container-row withinPost divNameTime">
@@ -78,9 +97,9 @@ const Piu: React.FC<PiuProps> = ({ piuData }) => {
             </div>
 
             <div className="container-row withinPost interact">
-                <InteractionButton onClick={handleLike}><img src={likeIcon} alt="Camera"/><small>{likeCounter}</small></InteractionButton>
-                <InteractionButton onClick={handleFavorite}><img src={favoriteIcon} alt="Galeria"/></InteractionButton>
-                <InteractionButton onClick={e => console.log(e.currentTarget.parentNode?.parentNode)} show={true}><img src={deleteIcon} alt="Emoticon"/></InteractionButton>
+                <InteractionButton onClick={handleLikeCorrect} show={true}><img src={isLiked? coloredLikeIcon : likeIcon} alt="Camera"/><small>{likeCounter}</small></InteractionButton>
+                <InteractionButton onClick={handleFavoriteCorrect} show={true}><img src={isFavorited ? coloredFavoriteIcon : favoriteIcon} alt="Galeria"/></InteractionButton>
+                <InteractionButton onClick={handleDeleteCorrect} show={true}><img src={deleteIcon} alt="Emoticon"/></InteractionButton>
             </div>
         </PiuComponent>
     )

@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import api from '../services/api';
 import { useAuth, User } from './useAuth';
 
@@ -13,12 +13,13 @@ export interface PiuData {
 
 interface PiusContextData {
     pius: Array<PiuData>;
+    likedPiusIds: Array<number>;
+    favoritedPiusIds: Array<number>;
     piusRequest(): Promise<void>;
     sendPiu(idUsuarioLogado: number, textoPiu: string): Promise<void>;
-    handleFavorite(piu: PiuData): Promise<void>;
-    handleLike(piu: PiuData): Promise<void>;
-    handleDelete(piu: PiuData): Promise<void>;
-    //findPiuId(piu: HTMLDivElement): number;
+    handleFavorite(piuId: number): Promise<void>;
+    handleLike(piuId: number): Promise<void>;
+    handleDelete(piuId: number): Promise<void>;
 }
 
 const PiusContext = createContext<PiusContextData>({} as PiusContextData);
@@ -27,12 +28,9 @@ export const PiusProvider: React.FC = ({children}) => {
     const { loggedUserData } = useAuth();
 
     const [pius, setPius] = useState<Array<PiuData>>([] as Array<PiuData>);
-    const [likeCounter, setLikeCounter] = useState(0);
-    const [favoriteCounter, setFavoriteCounter] = useState(0);
 
     const piusRequest = useCallback(async () => {
         const response = await api.get('/pius/')
-        console.log(response);
         setPius(response.data)
     }, []);
 
@@ -41,49 +39,87 @@ export const PiusProvider: React.FC = ({children}) => {
             usuario: idUsuarioLogado,
             texto: textoPiu
         })
-        setPius([ ...pius, response.data ]);
+        setPius([ response.data, ...pius ]);
     }, [setPius, pius])
+
+    const likedPiusIds = useMemo(() => {
+        const likedPius = pius.filter(piu => {
+            const usuariosQueDeramLike = piu.likers.map(user => user.id)
+            return usuariosQueDeramLike.includes(loggedUserData.id);
+        })
+        return likedPius.map(piu => piu.id);
+    }, [pius, loggedUserData])
+
+    const favoritedPiusIds = useMemo(() => {
+        const favoritedPius = pius.filter(piu => {
+            const usuariosQueFavoritaram = piu.favoritado_por.map(user => user.id)
+            return usuariosQueFavoritaram.includes(loggedUserData.id);
+        })
+        return favoritedPius.map(piu => piu.id);
+    }, [pius, loggedUserData])
+
+    const handleLike = useCallback(async (piuId: number) => {
+        await api.post('/pius/dar-like/', {
+            usuario: loggedUserData.id,
+            piu: piuId
+        })
+        let updatedPius = pius.slice();
+        updatedPius = updatedPius.map((piu) => {
+            if (piuId === piu.id) {
+                if (!piu.likers.includes(loggedUserData)) {
+                    piu.likers.push(loggedUserData);
+                } else {
+                    const userIndex = piu.likers.indexOf(loggedUserData);
+                    piu.likers.splice(userIndex, 1)
+                }
+            }
+            return piu;
+        })
+
+        setPius(updatedPius);
+    }, [loggedUserData, pius])
     
-    const handleFavorite = async (piu: PiuData) => {
-        if (favoriteCounter%2 == 1) {
-            api.post('/pius/favoritar/', {
-                usuario: loggedUserData.id,
-                piu: //id
-            })
-            // mudar cor da estrela
-        } else {
-            api.post('/pius/favoritar/', {
-                usuario: loggedUserData.id,
-                piu: //id
-            })
-            // mudar cor da estrela
-        }
-    }
+    const handleFavorite = useCallback(async (piuId: number) => {
+        await api.post('/pius/favoritar/', {
+            usuario: loggedUserData.id,
+            piu: piuId
+        })
+        let updatedPius = pius.slice();
+        updatedPius = updatedPius.map((piu) => {
+            if (piuId === piu.id) {
+                if (!piu.favoritado_por.includes(loggedUserData)) {
+                    piu.favoritado_por.push(loggedUserData);
+                } else {
+                    const userIndex = piu.favoritado_por.indexOf(loggedUserData);
+                    piu.favoritado_por.splice(userIndex, 1)
+                }            }
+            return piu;
+        })
 
-    const handleLike = async (piu: PiuData) => {
-        if (likeCounter%2 == 1) {
-            api.post('/pius/dar-like/', {
-                usuario: loggedUserData.id,
-                piu: //id
-            })
-            // mudar cor do coracao
-        } else {
-            api.post('/pius/dar-like/', {
-                usuario: loggedUserData.id,
-                piu: //id
-            })
-            // mudar cor do coracao
-        }
-    }
+        setPius(updatedPius);
+    }, [loggedUserData, pius])
 
-    const handleDelete = async (piu: PiuData) => {
-        //const piuId = piu.id;
-        //console.log(piuId);
-        //api.delete(`/pius/${piuId}`)
-    }
+    const handleDelete = useCallback(async (piuId: number) => {
+        await api.delete(`/pius/${piuId}`)
+        const updatedPius = pius.filter((piu) => {
+            return piu.id !== piuId;
+        })
+        setPius(updatedPius);
+    }, [pius])
 
     return (
-        <PiusContext.Provider value={{ pius, piusRequest, sendPiu, handleFavorite, handleLike, handleDelete }}>
+        <PiusContext.Provider 
+            value={{ 
+                pius, 
+                likedPiusIds,
+                favoritedPiusIds,
+                piusRequest, 
+                sendPiu, 
+                handleFavorite, 
+                handleLike, 
+                handleDelete 
+            }}
+        >
             {children}
         </PiusContext.Provider>
     )
