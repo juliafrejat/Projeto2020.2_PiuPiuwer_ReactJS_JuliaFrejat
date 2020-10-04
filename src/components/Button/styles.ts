@@ -19,11 +19,12 @@ export const ButtonComponent = styled.button<ButtonProps>`
     font-family: 'Zilla Slab','Courier New',Courier,serif;
     text-rendering: optimizeLegibility !important;
     
-    color:${props => props.isGreen ? '#FFFFFF' : 'var(--color-primary)'};
-    border:${props => props.isGreen ? 'none' : '2px solid var(--color-primary)'};
-    background-color:${props => props.isGreen ? 'var(--color-primary)' : '#FFFFFF'};
+    color: ${props => props.isGreen ? '#FFFFFF' : 'var(--color-primary)'};
+    border: ${props => props.isGreen ? 'none' : '2px solid var(--color-primary)'};
+    background-color: ${props => props.isGreen ? 'var(--color-primary)' : '#FFFFFF'};
+    opacity: ${props => props.isNotActive ? '0.8' : '1'};
 
     &:hover {
-        background-color:${props => props.isGreen ? 'var(--color-primary-dark)' : 'var(--color-secondary-lighter)'};
+        background-color: ${props => (props.isNotActive) ? 'var(--color-primary)' : 'var(--color-primary-dark)'};
     }
 `;

@@ -69,14 +69,6 @@ export const NewPiuComponent = styled.form<NewPiuProps>`
         justify-content: space-between;
     
     }
-
-    Button:disabled {
-        opacity: 0.8;
-    }
-
-    Button:disabled:hover {
-        background-color: var(--color-primary);
-    }
 `;
 
 interface CounterProps {
