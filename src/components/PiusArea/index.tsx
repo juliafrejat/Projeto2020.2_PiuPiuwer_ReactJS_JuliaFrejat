@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 
 import { usePius } from '../../hooks/usePius';
 import Piu from '../Piu';
@@ -8,7 +8,7 @@ function PiusArea() {
 
     useEffect(() => {
         piusRequest();
-    }, []);
+    }, [piusRequest]);
 
     const piuComponents = useMemo(() => {
         return pius.map((piu) => (
@@ -19,7 +19,7 @@ function PiusArea() {
                 isFavorited={favoritedPiusIds.includes(piu.id)}
             />
         ))
-    }, [pius]);
+    }, [pius, likedPiusIds, favoritedPiusIds]);
 
     return (
         <>

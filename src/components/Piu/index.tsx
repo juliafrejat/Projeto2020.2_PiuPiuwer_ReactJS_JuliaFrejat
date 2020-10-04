@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes, useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 
 import { InteractionButton, PiuComponent } from './styles';
 
@@ -9,7 +9,6 @@ import coloredFavoriteIcon from '../../assets/images/post_destaque_colorido.svg'
 import coloredLikeIcon from '../../assets/images/post_like_colorido.svg';
 
 import { PiuData, usePius } from '../../hooks/usePius';
-import { useAuth } from '../../hooks/useAuth';
 
 interface PiuProps {
     piuData: PiuData;
@@ -19,8 +18,7 @@ interface PiuProps {
 }
 
 const Piu: React.FC<PiuProps> = ({ piuData, isLiked, isFavorited }) => {
-    const { loggedUserData } = useAuth();
-    const { handleFavorite, handleLike, handleDelete } = usePius();
+    const { favoritePiu, likePiu, deletePiu } = usePius();
 
     const { username, first_name, last_name, foto } = piuData.usuario;
     const { horario, texto, likers } = piuData;
@@ -64,20 +62,20 @@ const Piu: React.FC<PiuProps> = ({ piuData, isLiked, isFavorited }) => {
         }
     }, [horario]);
 
-    const handleLikeCorrect = useCallback((e: any) => {
+    const handleLike = useCallback((e: any) => {
         e.preventDefault()
-        handleLike(piuData.id)
-    }, [handleLike, piuData])
+        likePiu(piuData.id)
+    }, [likePiu, piuData])
 
-    const handleFavoriteCorrect = useCallback((e: any) => {
+    const handleFavorite = useCallback((e: any) => {
         e.preventDefault()
-        handleFavorite(piuData.id)
-    }, [handleFavorite, piuData])
+        favoritePiu(piuData.id)
+    }, [favoritePiu, piuData])
 
-    const handleDeleteCorrect = useCallback((e: any) => {
+    const handleDelete = useCallback((e: any) => {
         e.preventDefault()
-        handleDelete(piuData.id)
-    }, [handleDelete, piuData])
+        deletePiu(piuData.id)
+    }, [deletePiu, piuData])
 
     return (
         <PiuComponent className="container-column post oldPost">
@@ -97,9 +95,9 @@ const Piu: React.FC<PiuProps> = ({ piuData, isLiked, isFavorited }) => {
             </div>
 
             <div className="container-row withinPost interact">
-                <InteractionButton onClick={handleLikeCorrect} show={true}><img src={isLiked? coloredLikeIcon : likeIcon} alt="Camera"/><small>{likeCounter}</small></InteractionButton>
-                <InteractionButton onClick={handleFavoriteCorrect} show={true}><img src={isFavorited ? coloredFavoriteIcon : favoriteIcon} alt="Galeria"/></InteractionButton>
-                <InteractionButton onClick={handleDeleteCorrect} show={true}><img src={deleteIcon} alt="Emoticon"/></InteractionButton>
+                <InteractionButton onClick={handleLike} show={true}><img src={isLiked? coloredLikeIcon : likeIcon} alt="Camera"/><small>{likeCounter}</small></InteractionButton>
+                <InteractionButton onClick={handleFavorite} show={true}><img src={isFavorited ? coloredFavoriteIcon : favoriteIcon} alt="Galeria"/></InteractionButton>
+                <InteractionButton onClick={handleDelete} show={true}><img src={deleteIcon} alt="Emoticon"/></InteractionButton>
             </div>
         </PiuComponent>
     )

@@ -39,6 +39,18 @@ export const Body = styled.div<DivProps>`
 
     @media (max-width: 970px) {
         width: 92%;
+        
+        #posts {
+            width: 60vw;
+        }
+
+        aside {
+            padding: 50px 0 0 0 !important;
+            width: 20%;
+            h2 {
+                font-size: 20px
+            }
+        }
     }
 `;
 

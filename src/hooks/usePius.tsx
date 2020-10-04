@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import React, { createContext, useCallback, useContext, useMemo, useState } from 'react';
 import api from '../services/api';
 import { useAuth, User } from './useAuth';
 
@@ -17,9 +17,9 @@ interface PiusContextData {
     favoritedPiusIds: Array<number>;
     piusRequest(): Promise<void>;
     sendPiu(idUsuarioLogado: number, textoPiu: string): Promise<void>;
-    handleFavorite(piuId: number): Promise<void>;
-    handleLike(piuId: number): Promise<void>;
-    handleDelete(piuId: number): Promise<void>;
+    favoritePiu(piuId: number): Promise<void>;
+    likePiu(piuId: number): Promise<void>;
+    deletePiu(piuId: number): Promise<void>;
 }
 
 const PiusContext = createContext<PiusContextData>({} as PiusContextData);
@@ -58,7 +58,7 @@ export const PiusProvider: React.FC = ({children}) => {
         return favoritedPius.map(piu => piu.id);
     }, [pius, loggedUserData])
 
-    const handleLike = useCallback(async (piuId: number) => {
+    const likePiu = useCallback(async (piuId: number) => {
         await api.post('/pius/dar-like/', {
             usuario: loggedUserData.id,
             piu: piuId
@@ -79,7 +79,7 @@ export const PiusProvider: React.FC = ({children}) => {
         setPius(updatedPius);
     }, [loggedUserData, pius])
     
-    const handleFavorite = useCallback(async (piuId: number) => {
+    const favoritePiu = useCallback(async (piuId: number) => {
         await api.post('/pius/favoritar/', {
             usuario: loggedUserData.id,
             piu: piuId
@@ -99,7 +99,7 @@ export const PiusProvider: React.FC = ({children}) => {
         setPius(updatedPius);
     }, [loggedUserData, pius])
 
-    const handleDelete = useCallback(async (piuId: number) => {
+    const deletePiu = useCallback(async (piuId: number) => {
         await api.delete(`/pius/${piuId}`)
         const updatedPius = pius.filter((piu) => {
             return piu.id !== piuId;
@@ -115,9 +115,9 @@ export const PiusProvider: React.FC = ({children}) => {
                 favoritedPiusIds,
                 piusRequest, 
                 sendPiu, 
-                handleFavorite, 
-                handleLike, 
-                handleDelete 
+                favoritePiu, 
+                likePiu, 
+                deletePiu 
             }}
         >
             {children}

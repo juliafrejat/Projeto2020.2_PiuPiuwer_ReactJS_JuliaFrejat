@@ -70,7 +70,7 @@ const NewPiu: React.FC<NewPiuProps> = (props) => {
 
             <div className="container-row" id="validText">
                 <p id="errorMsg">
-                    <EmptyErrorMsg isEmpty={textoDePiu.length == 0} click={click}>O piu não pode estar vazio.</EmptyErrorMsg>
+                    <EmptyErrorMsg isEmpty={textoDePiu.length === 0} click={click}>O piu não pode estar vazio.</EmptyErrorMsg>
                     <TooLongErrorMsg limitReached={textoDePiu.length > 140} click={click}>O piu não pode ter mais de 140 caracteres.</TooLongErrorMsg>
                 </p>
                 <Counter limitReached={textoDePiu.length > 140}>{textoDePiu.length}/140</Counter>
