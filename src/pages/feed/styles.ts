@@ -33,7 +33,7 @@ export const Body = styled.div<DivProps>`
         }
 
         #posts {
-            width: 90vw;
+            width: 90vw !important;
         }
     }
 
