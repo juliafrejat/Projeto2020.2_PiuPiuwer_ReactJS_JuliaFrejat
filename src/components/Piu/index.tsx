@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { ButtonHTMLAttributes, useCallback, useMemo } from 'react';
 
 import { InteractionButton, PiuComponent } from './styles';
 
@@ -80,7 +80,7 @@ const Piu: React.FC<PiuProps> = ({ piuData }) => {
             <div className="container-row withinPost interact">
                 <InteractionButton onClick={handleLike}><img src={likeIcon} alt="Camera"/><small>{likeCounter}</small></InteractionButton>
                 <InteractionButton onClick={handleFavorite}><img src={favoriteIcon} alt="Galeria"/></InteractionButton>
-                <InteractionButton onClick={e => console.log(e.currentTarget.parentNode?.parentNode)}><img src={deleteIcon} alt="Emoticon"/></InteractionButton>
+                <InteractionButton onClick={e => console.log(e.currentTarget.parentNode?.parentNode)} show={true}><img src={deleteIcon} alt="Emoticon"/></InteractionButton>
             </div>
         </PiuComponent>
     )

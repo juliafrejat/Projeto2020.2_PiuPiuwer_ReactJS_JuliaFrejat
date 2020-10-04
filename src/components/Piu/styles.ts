@@ -100,7 +100,11 @@ export const PiuComponent = styled.div<PiuProps>`
     }
 `;
 
-export const InteractionButton = styled.button`
+interface InteractionButtonProps {
+    show?: boolean;
+}
+
+export const InteractionButton = styled.button<InteractionButtonProps>`
     background: none;
     color: inherit;
     border: none;
@@ -108,7 +112,7 @@ export const InteractionButton = styled.button`
     font: inherit;
     cursor: pointer;
     outline: inherit;
-    display: flex;
+    display: ${props => props.show ? 'flex' : 'none'};
     flex-direction: row;
     align-items: flex-end;
 
