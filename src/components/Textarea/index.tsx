@@ -8,9 +8,10 @@ interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
     placeholder?: string;
     value: string;
     onChange(e: any): void;
+    isNotActive?: boolean;
 }
 
-const Textarea: React.FC<TextareaProps> = ({ id, classNames, placeholder, value, onChange }) => {
+const Textarea: React.FC<TextareaProps> = ({ id, classNames, placeholder, value, onChange, isNotActive }) => {
     return (
         <TextareaComponent
             id={id}
@@ -18,6 +19,7 @@ const Textarea: React.FC<TextareaProps> = ({ id, classNames, placeholder, value,
             placeholder={placeholder}
             value={value}
             onChange={onChange}
+            isNotActive={isNotActive}
         >
         </TextareaComponent>
     )

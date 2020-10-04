@@ -63,6 +63,7 @@ const NewPiu: React.FC<NewPiuProps> = (props) => {
                         placeholder="Digite um novo piu."
                         value={textoDePiu} 
                         onChange={handleTextPiuChange}
+                        isNotActive={error}
                         />
                 </div>
             </div>

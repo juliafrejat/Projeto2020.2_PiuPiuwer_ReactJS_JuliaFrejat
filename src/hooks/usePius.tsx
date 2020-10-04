@@ -64,10 +64,6 @@ export const PiusProvider: React.FC = ({children}) => {
         //api.delete(`/pius/${piuId}`)
     }
 
-    /* const findPiuId = (piu: HTMLDivElement) => {
-
-    } */
-
     return (
         <PiusContext.Provider value={{ pius, piusRequest, sendPiu, handleFavorite, handleLike, handleDelete }}>
             {children}

@@ -36,6 +36,7 @@ export const PiuComponent = styled.div<PiuProps>`
     .interact {
         flex-shrink: 1;
         justify-content: space-between;
+        align-items: center;
         width: 40% !important;
         align-self: flex-start;
         margin-top: 3%
@@ -77,7 +78,7 @@ export const PiuComponent = styled.div<PiuProps>`
     
     .destaque {
         order: 1;
-        background-color: var(--color-primary-lighte);
+        background-color: var(--color-primary-lighter);
     }
     
     .notCircImg {
@@ -107,4 +108,13 @@ export const InteractionButton = styled.button`
     font: inherit;
     cursor: pointer;
     outline: inherit;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+
+    small{
+        padding: 0 2px;
+        position: relative;
+        top: 2px;
+    }
 `;

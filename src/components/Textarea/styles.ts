@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 interface TextareaProps {
+    isNotActive?: boolean;
 }
 
 export const TextareaComponent = styled.textarea<TextareaProps>`
@@ -12,4 +13,6 @@ export const TextareaComponent = styled.textarea<TextareaProps>`
     background-color: var(--color-secondary-lighter);
     padding: 10px 15px;
     border-radius: 20px;
+    
+    opacity: ${props => props.isNotActive ? '0.7' : '1'}
 `;

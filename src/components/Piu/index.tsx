@@ -21,6 +21,8 @@ const Piu: React.FC<PiuProps> = ({ piuData }) => {
     const { username, first_name, last_name, foto } = piuData.usuario;
     const { horario, texto, likers } = piuData;
  
+    const likeCounter = likers.length;
+
     const relativeTime = useMemo(() => {
         const parsedPiuTime = Date.parse(horario);
         const currentTime = Date.parse(Date());
@@ -76,7 +78,7 @@ const Piu: React.FC<PiuProps> = ({ piuData }) => {
             </div>
 
             <div className="container-row withinPost interact">
-                <InteractionButton onClick={handleLike}><img src={likeIcon} alt="Camera"/></InteractionButton>
+                <InteractionButton onClick={handleLike}><img src={likeIcon} alt="Camera"/><small>{likeCounter}</small></InteractionButton>
                 <InteractionButton onClick={handleFavorite}><img src={favoriteIcon} alt="Galeria"/></InteractionButton>
                 <InteractionButton onClick={e => console.log(e.currentTarget.parentNode?.parentNode)}><img src={deleteIcon} alt="Emoticon"/></InteractionButton>
             </div>
